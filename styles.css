@@ -26,6 +26,33 @@ img {
     height: 100%;
     object-fit: cover;
 }
+
+.maincard .moving-image-maincard {
+    background: url('images/dotoverlay.png') repeat;
+    z-index: 1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 500%;
+    height: 500%;
+    opacity: 0.8;
+    animation: moveImageMaincard 100s linear infinite;
+    background-size: cover;
+}
+
+@keyframes moveImageMaincard {
+    0% {
+        transform: translate(0, 0);
+    }
+    50% {
+        transform: translate(-25%, -25%); /* Adjust values for proper movement */
+    }
+    100% {
+        transform: translate(0, 0);
+    }
+}
+
+
 /*Container ends here*/
 
 /*Takes care of card size based on screen size*/
@@ -55,12 +82,13 @@ img {
     transition: background-color 0.3s ease, transform 0.3s ease;
     position: relative;
     width: 22%;
-    height: 100%;
+    height: 80%;
     z-index: 1;
     float: left;
     padding: 1%;
 }
 .maincard {
+    overflow: hidden;
     text-align: center;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.3s ease;
@@ -109,6 +137,7 @@ img {
     border-radius: 40%;
     box-shadow: 0 0 20px rgba(0, 0, 0, 1); /* Adjust the box-shadow as needed */
     outline: 5px solid #99866a; /* Adjust the outline thickness and color as needed */
+    z-index: 2;
 }
 
 .overlay-text {
