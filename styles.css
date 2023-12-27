@@ -1,79 +1,74 @@
 body {
     font-family: Arial, sans-serif;
     margin: 0;
-    overflow-y: hidden;
+    overflow-y: scroll;
     overflow-x: hidden;
-    background-color: #dddddd;
-}
-.navbarcontainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #333;
-}
-  .navbar {
-    overflow: hidden;
-    background-color: #333;
-    display: flex;
-    justify-content: center;
+    background-color: rgb(104, 92, 76);
 }
 
-.navbar a {
-    float: left;
-    display: block;
-    color: #f2f2f2;
-    text-align: center;
-    padding: 14px 8%;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-    text-decoration: none;
-}
-
-.navbar a:hover {
-    background-color: #ddd;
-    color: black;
-    z-index: 2;
-    transform: scale(1.05);
-}
-
-
+/*Container*/
 .card-container {
-    display: flex;
-    overflow-x: auto;
-    white-space: nowrap;
-    width: 100%;
-    justify-content: center;
-    align-items: center;
+    margin-left: 20%;
+    width: 80%;
     height: 100vh;
+    float: left;
+}
+
+.maincard-container{
+    position: fixed;
+    width: 20%;
+    height: 100vh;
+    float: left;
 }
 
 img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* This ensures that the entire container is covered by the image */
-  }
+    object-fit: cover;
+}
+/*Container ends here*/
 
-  
-  .card {
-    border-radius: 8px;
+/*Takes care of card size based on screen size*/
+@media (max-width: 768px) {
+    .card {
+        width: 100%;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .card {
+        width: 45%;
+    }
+}
+
+@media (min-width: 1025px) {
+    .card {
+        width: 22%;
+    }
+}
+/*ends here */
+
+/* Card Display */
+.card {
     text-align: center;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.3s ease;
     position: relative;
     width: 22%;
-    padding: 1%;
-    height: 90%; /* Adjust the height as needed */
+    height: 100%;
     z-index: 1;
+    float: left;
+    padding: 1%;
 }
-
 .maincard {
-    border-radius: 8px;
     text-align: center;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.3s ease;
     position: relative;
-    width: 16%;
+    width: 100%;
     height: 100%; /* Adjust the height as needed */
     z-index: 1;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 1); /* Adjust the box-shadow as needed */
 }
 
 .card .overlay-image-engine {
@@ -87,6 +82,7 @@ img {
     height: auto; /* Set a fixed height for the overlay image */
     background-color: #d4d4d4b0;
     border-radius: 30%;
+    z-index: 1;
 }
 
 .card .overlay-image-available {
@@ -100,6 +96,7 @@ img {
     height: auto; /* Set a fixed height for the overlay image */
     background-color: #d4d4d4b0;
     border-radius: 30%;
+    z-index: 1;
 }
 
 .maincard .portrait{
@@ -109,8 +106,9 @@ img {
     transform: translate(-50%, -50%);
     width: 80%;
     height: auto; /* Set a fixed height for the overlay image */
-    background-color: #d4d4d4b0;
     border-radius: 40%;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 1); /* Adjust the box-shadow as needed */
+    outline: 5px solid #99866a; /* Adjust the outline thickness and color as needed */
 }
 
 .overlay-text {
@@ -127,8 +125,27 @@ img {
     text-wrap:balance;
     opacity: 0; /* Initially hidden */
     transition: opacity 0.3s ease;
+    z-index: 1;
 }
 
+.card .hover-gif {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 93%;
+    padding: 1%;
+    height: cover;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+/*Card display ends here*/
+
+/*Card hover*/
+.card:hover .hover-gif {
+    opacity: 1;
+}
 
 .card:hover .overlay-image-engine{
     opacity: 1;
@@ -142,7 +159,7 @@ img {
 }
 
 .card:hover {
-    background-color: #f0f0f0;
     z-index: 2;
     transform: scale(1.05);
 }
+/*Card hover ends here*/

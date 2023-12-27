@@ -7,3 +7,7 @@ function selectCard(cardNumber) {
     const selectedCard = document.querySelector(`.card:nth-child(${cardNumber})`);
     selectedCard.classList.add('selected');
 }
+
+function redirectTo(url) {
+    window.location.href = url;
+}
