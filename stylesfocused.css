@@ -21,7 +21,7 @@ body {
     width: 200%;
     height: 200%;
     opacity: 0.8;
-    animation: moveImageBackground 100s linear infinite;
+    animation: moveImageBackground 200s linear infinite;
     background-size: cover;
 }
 
@@ -44,35 +44,59 @@ body {
     font-weight: bold;
     text-wrap:balance;
 }
-.information-container{
-    position: absolute;
-    width: 52%;
-    height: 72%;
-    padding-top: 5%;
-    top: 58%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #99866a;
-    z-index: 1;
-    padding-left: 10%;
-    border-radius: 7%;
-    box-shadow: 0 0 8px rgba(0, 0, 0, 1); /* Adjust the box-shadow as needed */
-}
-.information-container .smallContainer{
+
+
+.smallContainer {
     justify-content: center;
     align-items: center;
     display: flex;
+    flex-direction: column;
     position: absolute;
-    width: 80%;
-    height: 90%;
+    width: 70%;
+    height: 88%;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #584e46;
+    z-index: 1;
+    overflow-y: visible;
+    overflow-x: hidden;
+    border-radius:  1%;
+}
+
+
+.easter-egg {
+    display: flex;
+    width: 10%;
+    height: auto;
+    position: fixed;
+    top: 0%;
+    left: 75%;
+    z-index: 10;
+}
+
+
+.video {
+    width: 99%;
+    height: 99%;
+    position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: #b49e7c;
-    z-index: 1;
-    border-radius: 1%;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 1); /* Adjust the box-shadow as needed */
-    overflow-y: scroll;
-    overflow-x: hidden;
-    
+    border-radius:  1%;
+    margin-top: .3%;
+    overflow: auto;
+}
+
+.text-under-video {
+    margin-top: 20px;
+    text-align: left;
+    text-overflow: wrap;
+    color: #fff;
+    padding-bottom: 10%;
+}
+
+.text-under-video .text-image{
+    width: 80%;
+    height: 90%;
 }
