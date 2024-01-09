@@ -1,0 +1,152 @@
+body {
+    font-family: 'Oswald', sans-serif;
+    font-family: 'Seymour One', sans-serif;
+    margin: 0;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    background-color:  rgba(212, 0, 0, 0);
+}
+
+.background-container {
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+}
+
+
+.background-container .moving-image-background {
+    background: url('images/overlay.png') repeat;
+    z-index: 1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200%;
+    height: 200%;
+    opacity: 0.8;
+    animation: moveImageBackground 200s linear infinite;
+    background-size: cover;
+}
+
+@keyframes moveImageBackground {
+    0% {
+        transform: translate(0, 0);
+    }
+    50% {
+        transform: translate(-25%, -25%); /* Adjust values for proper movement */
+    }
+    100% {
+        transform: translate(0, 0);
+    }
+}
+
+#respond {
+    margin-top: 40px;
+  }
+  
+  #respond input[type='text'],
+  #respond input[type='email'],
+  #respond textarea {
+    margin-bottom: 5px;
+    margin-left: 5%;
+    margin-right: 5%;
+    display: block;
+    width: 80%;
+    float: left;
+  
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -o-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -khtml-border-radius: 5px;
+    border-radius: 5px;
+  
+    line-height: 1.4em;
+  }
+
+.project-name{
+    top: 10%;
+    left: 50%;
+    font-size: 100px;
+    font-weight: bold;
+    text-wrap:balance;
+}
+
+
+.smallContainer {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    width: 70%;
+    height: 88%;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #584e46;
+    z-index: 1;
+    border-radius:  1%;
+}
+
+
+.title-text {
+    display: flex;
+    height: auto;
+    position: fixed;
+    font-size: xxx-large;
+    -webkit-text-stroke: 2px #473f32; /* WebKit browsers, like Chrome and Safari */
+    top: 5%;
+    left: 40%;
+    z-index: 10;
+    transform: translate(-50%, -50%);
+    color: #584e46;
+}
+
+.video {
+    width: 99%;
+    height: 99%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius:  1%;
+    margin-top: .3%;
+    overflow: auto;
+}
+
+.text-under-video {
+    margin-top: 20px;
+    text-align: left;
+    text-overflow: wrap;
+    color: #fff;
+    padding-bottom: 10%;
+}
+
+.text-under-video .text-image{
+    width: 80%;
+    height: 90%;
+}
+/*Takes care of card size based on screen size*/
+@media (max-width: 768px) {
+    .title-text{
+    font-size: x-large;
+    left: 50%;
+    }
+    .easter-egg{
+        width: 30%;
+    }
+
+    .smallContainer{
+        width: 90%;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+
+}
+
+@media (min-width: 1025px) {
+
+
+}
