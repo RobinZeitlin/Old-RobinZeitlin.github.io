@@ -11,3 +11,14 @@ function selectCard(cardNumber) {
 function redirectTo(url) {
     window.location.href = url;
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+    const boxes = document.querySelectorAll(".box"); // Use querySelectorAll to select all boxes
+
+    boxes.forEach(function (box) {
+        box.addEventListener("click", function () {
+            const hiddenText = box.querySelector(".hidden-text");
+            hiddenText.style.display = hiddenText.style.display === "none" ? "block" : "none";
+        });
+    });
+});
