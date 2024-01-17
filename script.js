@@ -22,3 +22,8 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 });
+
+function copyCode() {
+    document.getElementById("codeBlock").innerText;
+  }
+  
