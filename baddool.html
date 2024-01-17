@@ -6,7 +6,6 @@
     <link rel="stylesheet" type="text/css" href="stylesfocused.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200&family=Seymour+One&display=swap" rel="stylesheet">
     <title>Robin Zeitlin</title>
     <style>
         /* Scrollbar styling for WebKit browsers */
@@ -44,6 +43,13 @@
         .seymour-one-font {
           font-family: 'Seymour One', sans-serif;
         }
+
+        .text-image img {
+        width: 100%; /* Set the image width to 100% of its container */
+        height: auto; /* Maintain the aspect ratio */
+        display: block; /* Remove any extra space below the image */
+        max-width: 100%; /* Ensure the image doesn't exceed its original size */
+    }
       </style>
 </head>
 <div>
@@ -63,26 +69,41 @@
                       <iframe width="100%" height="90%" src="https://www.youtube.com/embed/Zt0c8hgHwnQ?si=OmZgZQsH0w7f1f_v" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                     <div class="text-under-video">
 
+                      
                       <div class="box-container">
+
                         <div class="box">
-                            <p class="oswald-font"> ⬇ Dungeon Generation</p>
+                          <p class="oswald-font">Description</p>
+                          <div class="hidden-text">
+
+                            <h2 class="oswald-font">Description</h2>
+                            <p class="oswald-font">Baddool is a project I started because I wanted to push myself and learn new things. I together with 2 other people after going to the 2023 Swedish Game Conference decided to not wait for the opportunity to come to us and instead make it happen ourselves. Which is why even though it had not been more than 2 months since the start of FutureGames. We dove head first into making a steam title. </p>
+                            <p class="oswald-font">We set a limit for ourselves of 3 months to complete our first published title and as soon as we set foot in Future Games again we started making the game. After a couple of weeks we recruited some more people into the project and I took a more together with the “Programming Role” also a more “Project Lead” role in the project.</p>
+                            <div class="text-image">
+                              <img src="images/SkövdeResan.jpg">
+                          </div>
+                          </div>
+                      </div>
+
+
+                        <div class="box">
+                            <p class="oswald-font">Procedural Dungeon Generation</p>
                             <div class="hidden-text">
-                                <h2 class="oswald-font">HEADER 1</h2>
-                                <p class="oswald-font">Text TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT.</p>
-                                <div class="text-image">
-                                    <img src="images/portrait.jpg">
-                                </div>
+
+                                <h2 class="oswald-font">Procedural Dungeon Generation</h2>
+                                <p class="oswald-font">I am extremely fascinated by Procedural Generation and more specifically Procedural World Generation. It changes the whole feeling of the game and it makes it possible for smaller indie games have big worlds.</p>
+                                <p class="oswald-font"> First iteration :  </p>
+                                <p class="oswald-font"> Secound iteration :  </p>
+                                <p class="oswald-font"> Third iteration :  </p>
+                                <p class="oswald-font"> Final iteration :  </p>
                             </div>
                         </div>
                 
                         <div class="box">
-                            <p class="oswald-font"> ⬇ NPC Interaction and State Machine</p>
+                            <p class="oswald-font">NPC Interaction and State Machine</p>
                             <div class="hidden-text">
                                 <h2 class="oswald-font">HEADER 2</h2>
                                 <p class="oswald-font">More text for the second box.</p>
-                                <div class="text-image">
-                                    <img src="images/another-image.jpg">
-                                </div>
                             </div>
                         </div>
                   
