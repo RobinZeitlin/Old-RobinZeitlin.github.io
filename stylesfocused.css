@@ -89,7 +89,7 @@ body {
     top: 55%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: #584e46;
+    background-color: #746f58;
     z-index: 1;
     border-radius:  1%;
 }
@@ -105,7 +105,7 @@ body {
     position: center;
     width: 90%;
     padding: 20px;
-    background-color: #302a26;
+    background-color: #463F3A;
     text-align: left;
     
     cursor: pointer;
@@ -168,12 +168,9 @@ body {
 .text-image img{
     width: 80%;
     height: 90%;
+    margin-left : 10%
 }
 
-.box:hover{
-    z-index: 2;
-    transform: scale(1.01); 
-}
 
 /*Takes care of card size based on screen size*/
 @media (max-width: 768px) {

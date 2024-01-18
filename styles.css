@@ -3,7 +3,7 @@ body {
     margin: 0;
     overflow-y: scroll;
     overflow-x: hidden;
-    background-color: rgb(104, 92, 76);
+    background-color: #463F3A;
 }
 /*Container*/
 .card-container {
@@ -120,7 +120,7 @@ img {
     height: auto; /* Set a fixed height for the overlay image */
     border-radius: 40%;
     box-shadow: 0 0 20px rgba(0, 0, 0, 1); /* Adjust the box-shadow as needed */
-    outline: 5px solid #99866a; /* Adjust the outline thickness and color as needed */
+    outline: 8px solid #463F3A; /* Adjust the outline thickness and color as needed */
     z-index: 2;
 }
 

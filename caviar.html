@@ -43,16 +43,15 @@
 
         <div class="background-container">
             <img src="images/beige.jpg">
-            <img class="moving-image-background" src="images/overlay.jpg">
+            <img class="moving-image-background" src="images/overlay.png">
 
             <div class="title-text"> 
-              <h1 class="seymour-one-font"> Caviar</h1>
+              <h1 class="seymour-one-font"> </h1>
             </div>
 
                 <div class="smallContainer" opacity>
-                  <img class="easter-egg" src="images/PeekyGoblin.png">
                     <div class="video" opacity>
-                      <iframe width="100%" height="90%" src="https://www.youtube.com/embed/Zt0c8hgHwnQ?si=OmZgZQsH0w7f1f_v" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                      <iframe width="100%" height="90%"src="https://www.youtube.com/embed/cC9r0jHF-Fw?si=VIh5Ad15c9u94ALk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                     <div class="text-under-video">
 
                       <h2 class="oswald-font">Description</h2>
@@ -69,14 +68,188 @@
                                     <img src="images/Caviar/Day1.png">
                                 </div>
 
+                                <h2 class="oswald-font">Day 2</h2>
+                                <p class="oswald-font">Today I spent a lot of time working on setting up the dev diary and adding coding snippet support for my portfolio. I recruited Kent Chua into the project due to his interest in the camera mechanic, a very valuable asset to the team and now we are the official “Caviar duo”. </p>
+                                <p class="oswald-font">I also began adding the eating action. I spent a lot of time figuring out how to make it as modular as possible and came up with a good solution of using enums to set the preferred food of the animal and then also using another set of enums on the “Food/Algae” gameobject that I can compare with the other enum to see if they are compatible (See picture below).</p>
+                                <div class="text-image">
+                                    <img src="images/Caviar/Day2.png">
+                                </div>
+
                             </div>
                         </div>
 
                         <div class="box">
-                          <p class="oswald-font">Behaviour Tree & AI</p>
+                          <h2 class="oswald-font">Animal eating</h2>
                           <div class="hidden-text">
-                              <h2 class="oswald-font">HEADER 2</h2>
-                              <p class="oswald-font">More text for the second box.</p>
+                              <p class="oswald-font">I started by making a new action for the behavior tree and added the proper “override Nodestate Evaluate()” function with a reference to the Animal. I needed to make sure that the behavior would only be called if it was time for the fish to eat so I added the proper variables in the animal class (maxHunger, currentHunger) I also added a failcheck to the function which makes sure the animal has a preferred food so it wouldn't cause a problem if someone fails to add the appropriate enum value.</p>
+                              
+                              <div class="code-snippet">
+                                <h2 class ="oswald-font">//Variables Needed.</h2>
+                                <button class="copy-btn" onclick="copyCode()">Copy</button>
+                                <pre><code id="codeBlock">
+[Header("Animal Hunger")]
+public int maxHunger;
+[ReadOnly] public int currentHunger;
+public FoodType preferedFood;
+                                </code></pre>
+                              </div>
+
+                              <div class="code-snippet">
+                                <h2 class ="oswald-font">//Settup and Failcheck.</h2>
+                                <button class="copy-btn" onclick="copyCode()">Copy</button>
+                                <pre><code id="codeBlock">
+public override NodeState Evaluate()
+{
+    Animal animal = behaviourTree as Animal;
+
+    //Failcheck
+    if(animal.preferedFood == FoodType.Missing)
+    {
+        Debug.LogWarning("Animal " + animal.name + " has no prefered food type");
+        return NodeState.Failure;
+    }
+}
+                                </code></pre>
+                              </div>
+
+                              <p class="oswald-font">I compare the currentHunger and the maxHunger to only run the action if the animal is hungry. After that I checked if the current food was null. If so The script finds all the Objects with the Food class. It then takes the enum which the class references and compares that to the Animals preferedFood (FoodType) enum and stores the ones that matches in a separate Variable. After that It goes through all of the compatible food references and finds the one closest to the Animal and assigns that as the current food. </p>
+                              <div class="code-snippet">
+                                <h2 class ="oswald-font">//Behaviour Logic.</h2>
+                                <button class="copy-btn" onclick="copyCode()">Copy</button>
+                                <pre><code id="codeBlock">
+if (animal.currentHunger < animal.maxHunger / 2)
+{
+  if(currentFood == null)
+  {
+    Food[] food = FindObjectsOfType<Food>();
+                                  
+    List<Food> foodThatAnimalLikes = GetFood(food, animal);
+    currentFood = ClosestFood(foodThatAnimalLikes, animal);
+  }
+  else
+  {
+    MoveToFood(animal);
+                                  
+    if(CloseToFood(animal))
+      return NodeState.Success;
+  }
+                                  
+  return NodeState.Running;
+}
+else
+{
+  return NodeState.Failure;
+}
+                                </code></pre>
+                              </div>
+
+                              <div class="code-snippet">
+                                <h2 class ="oswald-font">//Find Food.</h2>
+                                <button class="copy-btn" onclick="copyCode()">Copy</button>
+                                <pre><code id="codeBlock">
+    //Find all the food that the animal likes.
+    public List<Food> GetFood(Food[] allFood, Animal animal)
+    {
+        List<Food> foodThatAnimalLikes = new List<Food>();
+
+        foreach (Food aFood in allFood)
+        {
+            if (aFood.foodType == animal.preferedFood)
+            {
+                foodThatAnimalLikes.Add(aFood);
+            }
+        }
+
+        return foodThatAnimalLikes;
+    }
+                                </code></pre>
+                              </div>
+                              
+                              <div class="code-snippet">
+                                <h2 class ="oswald-font">//Compare Food Types.</h2>
+                                <button class="copy-btn" onclick="copyCode()">Copy</button>
+                                <pre><code id="codeBlock">
+    //Find the closest food to the animal using the list of food sorted by preference.
+    public Food ClosestFood(List<Food> foodThatAnimalLikes, Animal animal)
+    {
+        float closestDistance = Mathf.Infinity;
+        Food closestFood = null;
+
+        foreach (Food aFood in foodThatAnimalLikes)
+        {
+            float distance = Vector3.Distance(animal.transform.position, aFood.transform.position);
+
+            if (distance < closestDistance)
+            {
+                closestDistance = distance;
+                closestFood = aFood;
+            }
+        }
+
+        return closestFood;
+    }
+                                </code></pre>
+                              </div>
+                              
+                              <p class="oswald-font">And finally we do the Movement. It moves the animal and rotates it appropriately. Then I check if the food is close enough to the Animal and if so the animal “Eats the food”.  </p>
+                              <div class="code-snippet">
+                                <h2 class ="oswald-font">//Is the Animal within eating range.</h2>
+                                <button class="copy-btn" onclick="copyCode()">Copy</button>
+                                <pre><code id="codeBlock">
+public bool CloseToFood(Animal animal)
+{
+    if (Vector3.Distance(animal.transform.position, currentFood.transform.position) < 0.1f)
+    {
+        animal.currentHunger = animal.maxHunger;
+        currentFood = null;
+        return true;
+    }
+    return false;
+}
+                                </code></pre>
+                              </div>
+
+                              <div class="code-snippet">
+                                <h2 class ="oswald-font">//Movement and Rotation.</h2>
+                                <button class="copy-btn" onclick="copyCode()">Copy</button>
+                                <pre><code id="codeBlock">
+//Move animal towards food.
+public void MoveToFood(Animal animal)
+{
+    animal.transform.position = MoveVector(animal);
+    animal.transform.LookAt(currentFood.transform);
+}
+
+//Move animal towards food.
+public Vector3 MoveVector(Animal animal)
+{
+    Vector3 moveTo = Vector3.MoveTowards(
+    animal.transform.position,
+    currentFood.transform.position,
+    animal.moveSpeed * Time.deltaTime);
+
+    return moveTo;
+}
+                                </code></pre>
+                              </div>
+
+                              <div class="code-snippet">
+                                <h2 class ="oswald-font">//Is the Animal close enough to eat?.</h2>
+                                <button class="copy-btn" onclick="copyCode()">Copy</button>
+                                <pre><code id="codeBlock">
+public bool CloseToFood(Animal animal)
+{
+    if (Vector3.Distance(animal.transform.position, currentFood.transform.position) < 0.1f)
+    {
+        animal.currentHunger = animal.maxHunger;
+        currentFood = null;
+        return true;
+    }
+    return false;
+}
+                                </code></pre>
+                              </div>
+
                               <div class="text-image">
                                   <img src="images/another-image.jpg">
                               </div>
