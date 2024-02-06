@@ -3,7 +3,7 @@ body {
     margin: 0;
     overflow-y: scroll;
     overflow-x: hidden;
-    background-color: #463F3A;
+    background-color: #6C6061;
 }
 /*Container*/
 .card-container {
@@ -70,12 +70,13 @@ img {
     width: 30%;
     height: 60%;
     z-index: 1;
-    padding: 1.5%;
+    outline: 14px solid #F27059;
+    box-sizing: border-box; 
 }
+
 .maincard {
     overflow: hidden;
     text-align: center;
-    cursor: pointer;
     transition: background-color 0.3s ease, transform 0.3s ease;
     position: relative;
     width: 100%;
@@ -84,6 +85,12 @@ img {
     box-shadow: 0 0 20px rgba(0, 0, 0, 1); /* Adjust the box-shadow as needed */
 }
 
+.maincard .aboutmetext{
+    text-align: center;
+    position: relative;
+    cursor: pointer;
+    bottom: 5%;
+}
 .card .overlay-image-engine {
     position: absolute;
     top: 85%;
@@ -120,7 +127,7 @@ img {
     height: auto; /* Set a fixed height for the overlay image */
     border-radius: 40%;
     box-shadow: 0 0 20px rgba(0, 0, 0, 1); /* Adjust the box-shadow as needed */
-    outline: 8px solid #463F3A; /* Adjust the outline thickness and color as needed */
+    outline: 14px solid #F27059; /* Adjust the outline thickness and color as needed */
     z-index: 2;
 }
 
@@ -215,10 +222,6 @@ img {
     transform: scale(1.05);
 }
 
-.maincard:hover{
-    z-index: 2;
-    transform: scale(1.05); 
-}
 /*Card hover ends here*/
 
 /*Takes care of card size based on screen size*/

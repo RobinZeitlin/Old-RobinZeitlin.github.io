@@ -38,6 +38,19 @@ body {
     }
 }
 
+.vertical-text {
+    transform: rotate(-90deg);
+    transform-origin: left top;
+    white-space: nowrap;
+    position: absolute;
+    top: 98%;
+    left: 98%;
+    color: #584e46;
+    font-size: 25px;
+    z-index: 10;
+    color: #F27059;
+}
+
 .code-snippet {
     position: relative;
     background-color: #333333;
@@ -48,6 +61,13 @@ body {
     padding: 15px;
   }
   
+  .my-line {
+    width: 100%;
+    height: 2px;
+    margin-top: 2%;
+    background-color: #DADAD9;
+}
+
   .copy-btn {
     position: absolute;
     top: 5px;
@@ -89,7 +109,7 @@ body {
     top: 55%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: #746f58;
+    background-color: #6C6061;
     z-index: 1;
     border-radius:  1%;
 }
@@ -105,7 +125,7 @@ body {
     position: center;
     width: 90%;
     padding: 20px;
-    background-color: #463F3A;
+    background-color: #564E58;
     text-align: left;
     
     cursor: pointer;
@@ -135,7 +155,7 @@ body {
     height: auto;
     position: fixed;
     font-size: xxx-large;
-    -webkit-text-stroke: 2px #473f32;
+    -webkit-text-stroke: 2px #564E58;
     top: 5%;
     left: 40%;
     z-index: 10;
