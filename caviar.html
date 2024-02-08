@@ -69,12 +69,14 @@
                                     <img src="images/Caviar/Day1.png">
                                 </div>
                                 <div class="my-line"></div>
+
                                 <h2 class="oswald-font">Day 2</h2>
                                 <p class="oswald-font">Today I spent a lot of time working on setting up the dev diary and adding coding snippet support for my portfolio. I began adding the eating action. I spent a lot of time figuring out how to make it as modular as possible and came up with a good solution of using enums to set the preferred food of the animal and then also using another set of enums on the “Food/Algae” gameobject that I can compare with the other enum to see if they are compatible (See picture below).</p>
                                 <div class="text-image">
                                     <img src="images/Caviar/Day2.png">
                                 </div>
                                 <div class="my-line"></div>
+
                                 <h2 class="oswald-font">Day 3</h2>
                                 <p class="oswald-font">I spent a lot of time developing something I think is extremely exciting and a little bit over engineered today. I store object types in enum variables and then compare those with a hash-table. Using the enums as keys lets me grab the correct contains meshes and materials easily. I then also added a button to the inspector to call the function if pressed. </p>
                                 <p class="oswald-font">The point of me making the system this way is that instead of having 20 prefabs of every food type, I will instead be able to simply spawn the same prefab for every type of food and then just change the enum on the script on the GameObject.</p>
@@ -82,6 +84,7 @@
                                     <img src="images/Caviar/Day3.png">
                                 </div>
                                 <div class="my-line"></div>
+
                                 <h2 class="oswald-font">Day 4</h2>
                                 <p class="oswald-font">Today was a good day, I decided to buy the asset pack and the steam page is now completely up and running. I implemented the movement system today. The acceleration and de-aceleration is decided by animation curves so that I later can just go and tweak it when the time is given.  </p>
                                 <p class="oswald-font">I also started implementing the Camera system today. It takes a picture of the screen and then overlays the pictures to fit the polaroid format.</p>
@@ -89,6 +92,7 @@
                                     <img src="images/Caviar/Day4.png">
                                 </div>
                                 <div class="my-line"></div>
+
                                 <h2 class="oswald-font">Day 5</h2>
                                 <p class="oswald-font"> The Camera system is now basically fully implemented I added a stamp to the polaroid to market the game by just having people sharing their cute photos. (See picture below)</p>
                                 <p class="oswald-font"> I also finished up the mailbox, settup the interactable system and started implementing the bubbling photos mechanic. Which means the mailbox now get spawned at the center of the map, and if you interact with it while carrying a photo, the photo gets sendt of inside of a bubble.
@@ -96,6 +100,23 @@
                                     <img src="images/Caviar/Day5.png">
                                 </div>
                                 <div class="my-line"></div>
+
+                                <h2 class="oswald-font">Day 6</h2>
+                                <p class="oswald-font"> Today was very rewarding, registering what is photographed now works by boxcasting forward, I chose this because using a raycast would cast the player to be forced to be extremely precise when trying to take photos of fish.</p>
+                                <p class="oswald-font"> I also connected the level up system to this new registering what is photographed system which means I can now succesfully take a photograph of the target thing and make the ecosystem evolve! I also started working on the pause as I dont want it to be postponed and made on the last day before release.</p>
+                                <div class="text-image">
+                                    <img src="images/Caviar/Day6.png">
+                                </div>
+                                <div class="my-line"></div>
+
+                                <h2 class="oswald-font">Day 7</h2>
+                                <p class="oswald-font"> I finished up the pause menu today, implementing all its functionallity and splitting up a "bobbing" script into a component to be used else where if needed. I also added a juicyness component that when "OnEnable" triggers Invokes a unity event and scales the object to the correct size from zero causing the appearance to be smoother and more "naturul".</p>
+                                <p class="oswald-font"> I also finally started working on boids. Its extremely interesting and learning how to utilize "Weights" in this case the Cohesion, Seperation and Alignment feels very rewarding. To read more about this please refer to my "Boids" walk-through.</p>
+                                <div class="text-image">
+                                    <img src="images/Caviar/Day7.png">
+                                </div>
+                                <div class="my-line"></div>
+
                             </div>
                         </div>
 
