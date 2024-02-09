@@ -119,9 +119,116 @@
 
                             </div>
                         </div>
+                        
+                        <div class="box">
+                          <h2 class="oswald-font">Behaviour Tree | Boids</h2>
+                          <div class="hidden-text">
+
+                            <p>Tldr : Boid behavior persists of 3 things: Cohesion, Separation and Alignment. By using these three I can add them up and get the direction of which the fish should be facing in order to move correctly. I made a manager that sets the position of the target of which the fish will go towards.</p>
+
+                            <p>Cohesion isdirection towards them all, dividing it by the amount of fish in the flock and then normalizing it and using it as a weight. </p>
+                            <div class="code-snippet">
+                              <h2 class ="oswald-font">//Cohesion.</h2>
+                              <button class="copy-btn" onclick="copyCode()">Copy</button>
+                              <pre><code id="codeBlock">
+    private Vector3 CalculateCohesion(Animal animal)
+    {
+        Vector3 flockCenter = Vector3.zero;
+        float neighbourDistance = 5;
+        int groupSize = 0;
+
+        GameObject[] allFish = GlobalFlock.allFish;
+
+        foreach (GameObject thisFish in allFish)
+        {
+            if (thisFish != animal.gameObject)
+            {
+                float dist = Vector3.Distance(thisFish.transform.position, animal.transform.position);
+
+                if (dist <= neighbourDistance)
+                {
+                    flockCenter += thisFish.transform.position;
+                    groupSize++;
+                }
+            }
+        }
+                              </code></pre>
+                            </div>
+
+                            <p>Separation is calculated by taking all of the fish in the flock, adding their directions compared to the main fish together and then normalizing it.</p>
+                          <div class="code-snippet">
+                            <h2 class ="oswald-font">//Seperation.</h2>
+                            <button class="copy-btn" onclick="copyCode()">Copy</button>
+                            <pre><code id="codeBlock">
+    private Vector3 CalculateSeparation(Animal animal)
+    {
+        Vector3 separation = Vector3.zero;
+        float neighbourDistance = 5;
+
+        GameObject[] allFishes = GlobalFlock.allFish;
+
+        foreach (GameObject thisFish in allFishes)
+        {
+            if (thisFish != animal.gameObject)
+            {
+                float dist = Vector3.Distance(thisFish.transform.position, animal.transform.position);
+
+                if (dist <= neighbourDistance)
+                {
+                    separation += (animal.transform.position - thisFish.transform.position).normalized;
+                }
+            }
+        }
+
+        return separation;
+    }
+                            </code></pre>
+                          </div>
+
+                          <p>Alignment is calculated by adding all of the fish in the flocks transform forward into one variable and dividing them with the total amount of fish in the flock.</p>
+                        <div class="code-snippet">
+                          <h2 class ="oswald-font">//Alignment.</h2>
+                          <button class="copy-btn" onclick="copyCode()">Copy</button>
+                          <pre><code id="codeBlock">
+    private Vector3 CalculateAlignment(Animal animal)
+    {
+        Vector3 averageHeading = Vector3.zero;
+        float neighbourDistance = 5;
+        int groupSize = 0;
+
+        GameObject[] gos = GlobalFlock.allFish;
+
+        foreach (GameObject g in gos)
+        {
+            if (g != animal.gameObject)
+            {
+                float dist = Vector3.Distance(g.transform.position, animal.transform.position);
+
+                if (dist <= neighbourDistance)
+                {
+                    averageHeading += g.transform.forward;
+                    groupSize++;
+                }
+            }
+        }
+
+        if (groupSize > 0)
+        {
+            averageHeading /= groupSize;
+            return averageHeading.normalized;
+        }
+        else
+        {
+            return Vector3.zero;
+        }
+    }
+                          </code></pre>
+                        </div>
+                        </div>
+                      </div>
 
                         <div class="box">
-                          <h2 class="oswald-font"; style="color: #E1E1E1" >Animal eating</h2>
+                          <h2 class="oswald-font"; style="color: #E1E1E1" >Behaviour Tree | Animal eating </h2>
                           <div class="hidden-text">
                               <p class="oswald-font">I started by making a new action for the behavior tree and added the proper “override Nodestate Evaluate()” function with a reference to the Animal. I needed to make sure that the behavior would only be called if it was time for the fish to eat so I added the proper variables in the animal class (maxHunger, currentHunger) I also added a failcheck to the function which makes sure the animal has a preferred food so it wouldn't cause a problem if someone fails to add the appropriate enum value.</p>
                               
