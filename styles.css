@@ -3,7 +3,7 @@ body {
     margin: 0;
     overflow-y: scroll;
     overflow-x: hidden;
-    background-color: #6C6061;
+    background-color: #FF9A00;
 }
 /*Container*/
 .card-container {
@@ -70,7 +70,7 @@ img {
     width: 30%;
     height: 60%;
     z-index: 1;
-    outline: 14px solid #F27059;
+    margin: 20px;
     box-sizing: border-box; 
 }
 
@@ -127,7 +127,7 @@ img {
     height: auto; /* Set a fixed height for the overlay image */
     border-radius: 40%;
     box-shadow: 0 0 20px rgba(0, 0, 0, 1); /* Adjust the box-shadow as needed */
-    outline: 14px solid #F27059; /* Adjust the outline thickness and color as needed */
+    outline: 20px solid #FF9A00; /* Adjust the outline thickness and color as needed */
     z-index: 2;
 }
 
