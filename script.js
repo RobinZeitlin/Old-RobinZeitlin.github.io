@@ -26,3 +26,20 @@ document.addEventListener("DOMContentLoaded", function () {
 function copyCode() {
     document.getElementById("codeBlock").innerText;
   }  
+
+  let lastScrollTop = 0;
+const hiddenContainer = document.getElementById('hiddenContainer');
+
+window.addEventListener('scroll', function() {
+  const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+  if (scrollTop > lastScrollTop) {
+    // Scrolling down
+    hiddenContainer.style.display = 'none';
+  } else {
+    // Scrolling up
+    hiddenContainer.style.display = 'block';
+  }
+
+  lastScrollTop = scrollTop;
+});

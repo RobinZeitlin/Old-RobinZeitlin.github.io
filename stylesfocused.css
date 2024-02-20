@@ -3,7 +3,6 @@ body {
     margin: 0;
     overflow-y: hidden;
     overflow-x: hidden;
-    background-color:  rgba(212, 0, 0, 0);
 }
 
 .background-container {
@@ -12,9 +11,29 @@ body {
     height: 100%;
 }
 
+/*Scrollbar*/
+::-webkit-scrollbar-track {
+    background: #524c4c; /* Color of the track */
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #524c4c; /* Color of the handle */
+    border-radius: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #524c4c;
+    border-radius: 10px;
+  }
+
+  /* Scrollbar styling for Firefox */
+  html {
+    scrollbar-color: #524c4c #50434300;
+  }
+
 
 .background-container .moving-image-background {
-    background: url('images/overlay.png') repeat;
+    background: url('images/overlay2.png') repeat;
     z-index: 1;
     position: absolute;
     top: 0;
@@ -48,7 +67,7 @@ body {
     color: #584e46;
     font-size: 25px;
     z-index: 10;
-    color: #F27059;
+    color: #ffffff;
 }
 
 .code-snippet {
@@ -109,7 +128,7 @@ body {
     top: 55%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: #6C6061;
+    background-color: #758280;
     z-index: 1;
     border-radius:  1%;
 }
@@ -125,7 +144,7 @@ body {
     position: center;
     width: 90%;
     padding: 20px;
-    background-color: #564E58;
+    background-color: #3C4A4B;
     text-align: left;
     
     cursor: pointer;

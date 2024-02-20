@@ -5,8 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="styles.css">
     
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
     <title>Robin Zeitlin</title>
     <style>
+
+        body {
+            font: normal 10px "Seymour One", "Seymour One", sans-serif;
+        }
+
         /* Scrollbar styling for WebKit browsers */
         ::-webkit-scrollbar {
           width: 12px; /* Width of the scrollbar */
@@ -38,35 +47,25 @@
       
 </head>
 <body>
-    
-    <!--cards on screen-->
-<!--
 <div>
-    <div class="screen-container">
-        <img class="overlay-image-socials" src="images/LinkedIn.png">
-    </div>
-</div>
--->
-
-<div>
-    <div class="maincard-container">
+    <div class="maincard-container" class="hidden">
         <div class="maincard">
             <img src="images/beige.jpg">
             <img class="portrait" src="images/portrait.jpg" alt="Overlay Image 1">
             <img class="moving-image-maincard" src="images/overlay.png">
             <div class="overlay-text-visible" opacity>
-                <h1 style="color: #FF9A00; "> Robin Zeitlin</h1> 
-                <p> Im a Programmer currently studying at FutureGames. Seeking oppurtunities to contribute to game projects, learn new things and gain valueable experience. </p>
-                <h3 style="color: #FF9A00; "> Languages</h3>
-                <p> • C#</p>
-                <p> • C++</p>
-                <p> • Html</p>
-                <p> • Css</p>
-                <h3 style="color: #FF9A00; ">Engines</h3>
-                <p> • Unity </p>
+                <h1 style="color: #39312C; "> Robin Zeitlin</h1> 
+                <p style="color: #39312C; "> Im a Programmer currently studying at FutureGames. Seeking oppurtunities to contribute to game projects, learn new things and gain valueable experience. </p>
+                <h3 style="color: #39312C; "> Languages</h3>
+                <p style="color: #39312C; "> • C#</p>
+                <p style="color: #39312C; "> • C++</p>
+                <p style="color: #39312C; "> • Html</p>
+                <p style="color: #39312C; "> • Css</p>
+                <h3 style="color: #39312C; ">Engines</h3>
+                <p style="color: #39312C; "> • Unity </p>
            </div>
         <div class="aboutmetext">
-          <p style="color:#0051ff"> about me</p>
+          <p style="color:#0051ff" class="seymour-one-regular"> about me</p>
         </div>
         </div>
     </div>
@@ -98,6 +97,7 @@
   <div class="card 2" onclick="redirectTo('Caviar.html')">
     <img src="images/Caviar.png">
     <img class="overlay-image-engine" src="images/unity.png" alt="Overlay Image 1">
+    <img class="overlay-image-available" src="images/steamicon.png" alt="Overlay Image 1">
     <div class="overlay-text">
         <h1>Caviar</h1> 
          <h2>Solo (With Colaboration) 👥</h2>
@@ -123,15 +123,6 @@
  </div>
 </div>
 
-<div class="card 4" onclick="redirectTo('Caviar.html')">
-  <img src="images/tools.jpg">
-  <div class="overlay-text">
-      <h1>Tools ive created that I want you to have.</h1> 
-       <h3 style="text-align:left; padding-left:10px;" > Contains : </h3>
-       <p style="text-align:left; padding-left:10px;"> • Sprite adapted based on input device.</p>
- </div>
-</div>
-
     <div class="card 5">
         <img src="images/pitchBlack.png">
         
@@ -141,9 +132,14 @@
              <p> Congrats you reached the end of internet🎉 </p>
        </div>
     </div>
-    
+
+    <div class="bottom-box">
+
+    </div>
 
 </div>
+
+
 
 <script src="script.js"></script>
 </body>
