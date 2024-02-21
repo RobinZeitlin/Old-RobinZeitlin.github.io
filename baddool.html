@@ -28,8 +28,7 @@
     <body>
 
         <div class="background-container">
-            <img src="images/beige.jpg">
-            <img class="moving-image-background" src="images/overlay.jpg">
+            <img class="moving-image-background" src="images/.jpg">
 
             <div class="vertical-text">
               Made by Robin.
@@ -60,27 +59,256 @@
                         <div class="box">
                             <h2 class="oswald-font">Procedural Dungeon Generation</h2>
                             <div class="hidden-text">
+                                <p class="oswald-font">Tldr: Using “Random Walk Algorithm” to create a procedural dungeon. Solving the problem of intercepting walls by removing them based on neighboring entities on instantiation.</p>
+                                <div class="my-line"></div>
 
-                                <h2 class="oswald-font">Procedural Dungeon Generation</h2>
-                                <p class="oswald-font">I am extremely fascinated by Procedural Generation and more specifically Procedural World Generation. It changes the whole feeling of the game and it makes it possible for smaller indie games have big worlds.</p>
-                                <p class="oswald-font"> First iteration :  </p>
+                                <p class="oswald-font"> Procedural dungeon generator. I looked into multiple ways to generate a dungeon. Due to the design of our dungeons I decided to use an algorithm called “Random Walk Algorithm“. This is an algorithm that sends out “Agents” towards different rotations, storing them in a list of slots, and then use these walking paths as the slots to Instantiate entities. To get these directions I created a function that randomizes between the 4 rotation possibilities (up, down, left, right) and returns the proper Vector direction.  </p>
+                                
                                 <div class="code-snippet">
                                   <button class="copy-btn" onclick="copyCode()">Copy</button>
                                   <pre><code id="codeBlock">
-                                    Create Dungeon
+var randomDirection = Random.Range(0, Enum.GetValues(typeof(Direction)).Length);
+
+private Vector3 GetDirection(Direction _direction)
+{
+    switch (_direction)
+    {
+        case Direction.Right: return latestRoom.transform.right;
+        case Direction.Forward: return latestRoom.transform.forward;
+        case Direction.Left: return -latestRoom.transform.right;
+        case Direction.Backward: return -latestRoom.transform.forward;
+        default: return Vector3.zero;
+    }
+}
                                   </code></pre>
                                 </div>
-                                <p class="oswald-font"> Secound iteration :  </p>
-                                <p class="oswald-font"> Third iteration :  </p>
-                                <p class="oswald-font"> Final iteration :  </p>
-                            </div>
+
+                                <div class="my-line"></div>
+
+                                <p class="oswald-font"> But I had no safe check which would cause the same “Entity” to be instantiated on the same square as an already existing one due to the possibility of the “Agent” looping around. Therefore I made sure to check if the slot where the room was supposed to be placed was occupied or not.</p>
+                                <div class="code-snippet">
+                                  <button class="copy-btn" onclick="copyCode()">Copy</button>
+                                  <pre><code id="codeBlock">
+bool roomExists = dungeonmanager.roomsInScenePosition.Any(room => room.transform.position == nextPosition);
+                                  </code></pre>
+                                </div>
+                                <div class="my-line"></div>
+
+                                <p class="oswald-font"> If this would return as positive I simply took all the rooms and started from one of them randomly. I also added a simple direction check to remove the walls between the neighbors. This was the result of that iteration. </p>
+                                <div class="text-image">
+                                  <img src="gifs/ShowcaseDungeonGeneration.gif">
+                               </div>
+                               <div class="my-line"></div>
+                                <p class="oswald-font"> At this point in the making of the generator I needed to start making actual doorways between the rooms. This isn't as complicated as I had previously thought. I was able to simply just exchange the wall to be removed into a door and cover up the sides with proper walls. Great! It's done now and the dungeon is completed..! No this would mean that there would be intercepting walls as seen below in between the rooms.</p>
+                                <div class="text-image">
+                                  <img src="gifs/ShowcaseDungeonGeneration2.gif">
+                               </div>
+                               <div class="my-line"></div>
+                                <p class="oswald-font"> Therefore I decided to switch over to a system that checks the neighboring entities and destroys the walls towards them when it is instantiated for the first time. Which would cause no walls to intercept each other.</p>
+                                <div class="text-image">
+                                  <img src="gifs/ShowcaseDungeonGeneration3.gif">
+                               </div>
+                               <div class="my-line"></div>
+
+                              </div>
                         </div>
                 
                         <div class="box">
-                            <h2 class="oswald-font">NPC Interaction and State Machine</h2>
+                            <h2 class="oswald-font">Procedural Dungeon Generation Code</h2>
                             <div class="hidden-text">
-                                <h2 class="oswald-font">HEADER 2</h2>
-                                <p class="oswald-font">More text for the second box.</p>
+                              <div class="code-snippet">
+                                <button class="copy-btn" onclick="copyCode()">Copy</button>
+                                <pre><code id="codeBlock">
+public bool CheckDirection(Vector3 _direction, bool wall)
+{
+    var bounds = RoomBounds();
+
+    var roomInDirection = new Vector3(
+        transform.position.x + bounds.size.x * _direction.x,
+        transform.position.y + bounds.size.y * _direction.y,
+        transform.position.z + bounds.size.z * _direction.z);
+
+
+    foreach (var roomTransform in S_DungeonManager.instance.roomsInScenePosition)
+    {
+        var roomPosition = roomTransform.transform.position;
+
+        if (roomPosition == roomInDirection)
+        {
+            if (wall && roomTransform.layer == 9)
+                return false;
+
+            return true;
+        }
+    }
+
+    return false;
+}
+
+public async void GenerateRooms()
+{
+    while (dungeonmanager.roomsInScenePosition.Count < dungeonmanager.AmountOfRooms)
+    {
+        GameObject roomToSpawn = roomsToSpawn[Random.Range(0, roomsToSpawn.Count)];
+        await Task.Delay(delay);
+
+        var bounds = RoomBounds();
+        print("found bounds");
+        var randomDirection = Random.Range(0, Enum.GetValues(typeof(Direction)).Length);
+        var direction = GetDirection((Direction)randomDirection);
+
+        var nextPosition = new Vector3(
+            latestRoom.transform.position.x + bounds.size.x * direction.x,
+            latestRoom.transform.position.y + bounds.size.y * direction.y,
+            latestRoom.transform.position.z + bounds.size.z * direction.z);
+
+        bool roomExists = dungeonmanager.roomsInScenePosition.Any(room => room.transform.position == nextPosition);
+        print(roomExists);
+
+        if ((roomExists && dungeonmanager.AmountOfRooms - 1 > dungeonmanager.roomsInScenePosition.Count) || (roomExists && dungeonmanager.AmountOfRooms - 1 == dungeonmanager.roomsInScenePosition.Count))
+        {
+            var randomRoom = dungeonmanager.roomsInScenePosition[Random.Range(0, dungeonmanager.roomsInScenePosition.Count)];
+            latestRoom = randomRoom;
+        }
+        else
+        {
+            GameObject Room = Instantiate(roomToSpawn, nextPosition, Quaternion.identity, roomParent);
+            print(Room.name);
+            dungeonmanager.roomsInScenePosition.Add(Room);
+            Room.GetComponent<S_RoomCode>().DestroyWalls();
+            latestRoom = Room;
+        }
+    }
+
+    canCheck = true;
+    placeContent.FillList();
+}
+
+
+private Vector3 GetDirection(Direction _direction)
+{
+    switch (_direction)
+    {
+        case Direction.Right: return latestRoom.transform.right;
+        case Direction.Forward: return latestRoom.transform.forward;
+        case Direction.Left: return -latestRoom.transform.right;
+        case Direction.Backward: return -latestRoom.transform.forward;
+        default: return Vector3.zero;
+    }
+}
+
+private Bounds RoomBounds()
+{
+    var renderers = latestRoom.transform.GetChild(0).gameObject.GetComponent<BoxCollider>();
+
+    if (renderers != null)
+    {
+        var bounds = renderers.bounds;
+        return bounds;
+    }
+
+    return new Bounds();
+}
+                                </code></pre>
+                              </div>
+
+                              <div class="code-snippet">
+                                <button class="copy-btn" onclick="copyCode()">Copy</button>
+                                <pre><code id="codeBlock">
+void UpdateDoorAndTorches(int index, Vector3 direction, bool activateTorch)
+{
+    if (CheckDirection(direction, false) && walls[index] != null)
+    {
+        if (doors.Count > index && torches.Count > index && torches[index] != null)
+        {
+            doors[index].SetActive(false);
+
+            if (torches[index].gameObject != null)
+            torches[index].SetActive(activateTorch);
+            else
+                torches[index].SetActive(false);
+
+            Transform torchChild = torches[index].transform.GetChild(0);
+
+            if (torchChild != null)
+            {
+                torchChild.gameObject.SetActive(activateTorch);
+            }
+
+            MoveTorchesToWall(index);
+        }
+    }
+}
+
+public void MoveTorchesToWall(int torchIndex)
+{
+    if (torchIndex >= 0 && torchIndex < torches.Count)
+    {
+        Transform torchTransform = torches[torchIndex].transform;
+
+        if (torchTransform != null)
+        {
+            RaycastHit hit;
+            if (Physics.Raycast(torchTransform.position, -torchTransform.forward, out hit, Mathf.Infinity, wallLayer))
+            {
+                Vector3 newPosition = hit.point + hit.normal * 0.1f; // Adjust the factor as needed
+                torchTransform.position = newPosition;
+            }
+        }
+    }
+}
+public void DestroyWalls()
+{
+    for (int i = 0; i < walls.Count; i++)
+    {
+        if (CheckDirection(directions[i], true) && walls[i] != null)
+        {
+            walls[i].SetActive(false);
+        }
+    }
+}
+
+
+public bool CheckDirection(Vector3 _direction, bool wall)
+{
+    var bounds = RoomBounds();
+
+    var roomInDirection = new Vector3(
+        transform.position.x + bounds.size.x * _direction.x,
+        transform.position.y + bounds.size.y * _direction.y,
+        transform.position.z + bounds.size.z * _direction.z);
+
+
+    foreach (var roomTransform in S_DungeonManager.instance.roomsInScenePosition)
+    {
+        var roomPosition = roomTransform.transform.position;
+
+        if (roomPosition == roomInDirection)
+        {
+            if (wall && roomTransform.layer == 9)
+                return false;
+
+            return true;
+        }
+    }
+
+    return false;
+}
+
+private Bounds RoomBounds()
+{
+    var renderers = boxCollider;
+
+    if (renderers != null)
+    {
+        var bounds = renderers.bounds;
+        return bounds;
+    }
+
+    return new Bounds();
+}
+                                </code></pre>
+                              </div>
                             </div>
                         </div>
 
