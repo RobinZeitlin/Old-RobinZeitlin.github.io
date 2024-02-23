@@ -39,12 +39,22 @@
 
                 <div class="smallContainer" opacity>
                     <div class="video" opacity>
-                      <iframe width="100%" height="90%" src="https://www.youtube.com/embed/rxnmJRQE6Mk?si=XByC7Z6yu9EnNU9f" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                      <iframe width="100%" height="70%" src="https://www.youtube.com/embed/rxnmJRQE6Mk?si=XByC7Z6yu9EnNU9f" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                     <div class="text-under-video">
 
-                      <div class="box-container">
+                      <div style="display: flex;">
+                        <h1 style="font-size: 8vh; margin: 5%;">Caviar.</h1>
+                        <div style="margin-left: 10px;">
+                          <p>After the release of my first steam title BadDool. I decided to start releasing one game every month. But because its so important for me to learn new things, I decided to make these projects based on things I wanted to learn.</p>
+                          <p>For this project my main focus was AI and more specifically Behaviour Trees. I came up with two concepts, but decided to go all in on fish behavior because it also lets me look into boids which seemed very interesting.</p>
+                          <p>I decided to document the process everyday in a "Dev Diary". So feel free to read more about the process under the dev Diary category. As always the components I built for this project will be available under my Component page.</p>
+                        </div>
+                      </div>
 
-                        <div class="box">
+
+                      
+                      <div class="box-container">
+                          <div class="box">
                             <h2 class="oswald-font"; style="color: #E1E1E1" >Dev Diary</h2>
                             <div class="hidden-text">
                                 <h2 class="oswald-font">Day 1</h2>
@@ -130,19 +140,30 @@
                                 <div class="my-line"></div>
                               
                               </div>
+                            
+                          </div>
+                          
+                          <div class="my-line"></div>
+
+                          <div style="display: flex;">
+                            <img style="height: 30%; width: 30%; margin: 5%;" src="images/boids.png">
+                            <div style="margin-left: 10px;">
+                              <h2 style="color: #fabf66;"> Boids -> Tldr</h2>
+                              <p>Boid behavior persists of 3 things: Cohesion, Separation and Alignment. By using these three weights I can add them up and get the direction of which the fish should be facing in order to move correctly.</p>
+                              <h3 style="color: #fabf66;">Cohesion</h3>
+                              <p>Cohesion isdirection towards them all, dividing it by the amount of fish in the flock and then normalizing it and using it as a weight.</p>
+                              <h3 style="color: #fabf66;">Alignment</h3>
+                              <p>Alignment is calculated by adding all of the fish in the flocks transform forward into one variable and dividing them with the total amount of fish in the flock.</p>
+                              <h3 style="color: #fabf66;">Seperation</h3>
+                              <p>Separation is calculated by taking all of the fish in the flock, adding their directions compared to the main fish together and then normalizing it.</p>
                             </div>
-                        </div>
-                        
-                        <div class="box">
-                          <h2 class="oswald-font">Behaviour Tree | Boids</h2>
+                          </div>
+                          
+                          <div class="box">
+                          <h2 class="oswald-font">Boids | Code</h2>
                           <div class="hidden-text">
-
-                            <p>Tldr : Boid behavior persists of 3 things: Cohesion, Separation and Alignment. By using these three I can add them up and get the direction of which the fish should be facing in order to move correctly. I made a manager that sets the position of the target of which the fish will go towards.</p>
-
-                            <p>Cohesion isdirection towards them all, dividing it by the amount of fish in the flock and then normalizing it and using it as a weight. </p>
                             <div class="code-snippet">
                               <h2 class ="oswald-font">//Cohesion.</h2>
-                              <button class="copy-btn" onclick="copyCode()">Copy</button>
                               <pre><code id="codeBlock">
     private Vector3 CalculateCohesion(Animal animal)
     {
@@ -168,10 +189,9 @@
                               </code></pre>
                             </div>
 
-                            <p>Separation is calculated by taking all of the fish in the flock, adding their directions compared to the main fish together and then normalizing it.</p>
+
                           <div class="code-snippet">
                             <h2 class ="oswald-font">//Seperation.</h2>
-                            <button class="copy-btn" onclick="copyCode()">Copy</button>
                             <pre><code id="codeBlock">
     private Vector3 CalculateSeparation(Animal animal)
     {
@@ -198,10 +218,8 @@
                             </code></pre>
                           </div>
 
-                          <p>Alignment is calculated by adding all of the fish in the flocks transform forward into one variable and dividing them with the total amount of fish in the flock.</p>
                         <div class="code-snippet">
                           <h2 class ="oswald-font">//Alignment.</h2>
-                          <button class="copy-btn" onclick="copyCode()">Copy</button>
                           <pre><code id="codeBlock">
     private Vector3 CalculateAlignment(Animal animal)
     {
@@ -238,9 +256,120 @@
                           </code></pre>
                         </div>
                         </div>
-                      </div>
+                          </div>
 
-                        <div class="box">
+                          <div style="display: flex;">
+                            <div style="margin-left: 5px;">
+                              <h3 style="color: #fabf66;">InputDisplay->Tldr</h3>
+                              <p>System changes sprite based on inputtype, very user friendly and made so designers easily can adapt game to console.</p>
+                              <h3 style="color: #fabf66;">How it works</h3>
+                              <p>To use this the user simply drops the component onto a UI image and select wether or not the indicator should be displayed during runtime. It then changes based on the current input type.</p>
+                            </div>
+                            <img style="height: 30%; width: 100%; margin: 5%;" src="images/SpriteChange.png">
+                          </div>
+                          
+
+                          
+                          <div style="text-align: center; margin-left:10%">
+                            <h1 style="color: #fabf66;">Showcase</h1>
+                            <img style="height: 30%; width: 60%; display: block; margin: auto;" src="images/ShowcaseInputDisplay.gif">
+                            <p></p>
+                          </div>
+
+                          <div class="box">
+                            <h2 class="oswald-font">Input Display</h2>
+                              <div class="hidden-text">
+                                
+                                <div class="code-snippet">
+                                  <pre><code id="codeBlock">
+[CustomEditor(typeof(InputTypeDetector)), CanEditMultipleObjects]
+public class InputEditor : Editor
+{
+    public override void OnInspectorGUI()
+    {
+        InputTypeDetector inputTypeDetector = (InputTypeDetector)target;
+
+        EditorGUILayout.BeginHorizontal();
+
+        if (inputTypeDetector.KeyboardIcon == null)
+            inputTypeDetector.KeyboardIcon = (Sprite)AssetDatabase.LoadAssetAtPath("Assets/Editor/Icons/Missing.png", typeof(Sprite));
+
+        if (inputTypeDetector.DisplayKeyboardIcon)
+            inputTypeDetector.KeyboardIcon = (Sprite)EditorGUILayout.ObjectField("Keyboard Icon", inputTypeDetector.KeyboardIcon, typeof(Sprite), false);
+
+        inputTypeDetector.DisplayKeyboardIcon = EditorGUILayout.Toggle("Display Keyboard Icon?", inputTypeDetector.DisplayKeyboardIcon);
+
+        EditorGUILayout.EndHorizontal();
+
+        EditorGUILayout.BeginHorizontal();
+
+        if(inputTypeDetector.GamepadIcon == null)
+            inputTypeDetector.GamepadIcon = (Sprite)AssetDatabase.LoadAssetAtPath("Assets/Editor/Icons/Missing.png", typeof(Sprite));
+
+        if(inputTypeDetector.DisplayGamepadIcon)
+        inputTypeDetector.GamepadIcon = (Sprite)EditorGUILayout.ObjectField("GamePad Icon", inputTypeDetector.GamepadIcon, typeof(Sprite), false);
+
+        inputTypeDetector.DisplayGamepadIcon = EditorGUILayout.Toggle("Display GamePad Icon?", inputTypeDetector.DisplayGamepadIcon);
+
+        EditorGUILayout.EndHorizontal();
+
+        // Apply changes to the serialized object
+        if (GUI.changed)
+        {
+            EditorUtility.SetDirty(inputTypeDetector);
+        }
+    }
+}
+                                  </code></pre>
+                                </div>
+
+                                <div class="code-snippet">
+                                  <pre><code id="codeBlock">
+public class InputTypeDetector : MonoBehaviour
+{
+    private Image inputIcon;
+
+    [SerializeField] public Sprite KeyboardIcon;
+    [SerializeField] public bool DisplayKeyboardIcon;
+
+    [SerializeField] public Sprite GamepadIcon;
+    [SerializeField] public bool DisplayGamepadIcon;
+
+    private void OnEnable()
+    {
+        inputIcon = GetComponent<Image>();
+
+        InputSystem.onDeviceChange += OnDeviceChange;
+
+        CheckInputType();
+    }
+
+    private void OnDisable()
+    {
+        InputSystem.onDeviceChange -= OnDeviceChange;
+    }
+    private void OnDeviceChange(InputDevice device, InputDeviceChange changeType)
+    {
+        CheckInputType();
+    }
+
+    public void CheckInputType()
+    {
+        inputIcon.sprite = Gamepad.current != null && DisplayGamepadIcon ? GamepadIcon :
+                   Keyboard.current != null && DisplayKeyboardIcon ? KeyboardIcon :
+                   (Sprite)AssetDatabase.LoadAssetAtPath("Assets/Editor/Icons/noneIcon.png", typeof(Sprite));
+
+    }
+}
+                                  </code></pre>
+                                </div>
+                                
+                              </div>
+                            </div>
+
+                          
+                            <!--
+                          <div class="box">
                           <h2 class="oswald-font"; style="color: #E1E1E1" >Behaviour Tree | Animal eating </h2>
                           <div class="hidden-text">
                               <p class="oswald-font">I started by making a new action for the behavior tree and added the proper “override Nodestate Evaluate()” function with a reference to the Animal. I needed to make sure that the behavior would only be called if it was time for the fish to eat so I added the proper variables in the animal class (maxHunger, currentHunger) I also added a failcheck to the function which makes sure the animal has a preferred food so it wouldn't cause a problem if someone fails to add the appropriate enum value.</p>
@@ -416,10 +545,13 @@ public bool CloseToFood(Animal animal)
                                   <img src="images/another-image.jpg">
                               </div>
                           </div>
-                        </div>
+                          </div>-->
                           
+                          <div class="my-line"></div>
+
                         <h2 class="oswald-font"; style="text-align:center">Thank you for reading.</h2>
                     </div>  
+                    
             </div>
         </div>
         <script src="script.js"></script>
