@@ -106,6 +106,7 @@ img {
     display: flex; 
     justify-content: space-around;
     align-items: center;
+    width: 100%;
   }
   
   .box {
@@ -290,10 +291,23 @@ img {
 
 @media (max-width: 768px) {
 
+    .card
+    {
+        width: 100%;
+    }
+
+    .overlay-image-engine
+    {
+        width: 50px;
+    }
 }
 
 @media (min-width: 769px) and (max-width: 1024px) {
-
+    
+    .card
+    {
+        width: 39%;
+    }
 }
 
 @media (min-width: 1025px) {
