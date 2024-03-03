@@ -49,8 +49,10 @@
                       <div class="box-container">
                         <div class="box">
                           <h2 class="oswald-font"; style="color: #E1E1E1" >Goals</h2>
+                          <h2 class="click-this">Click Here</h2>
                             <div class="hidden-text">
-                                <p> 1. Develop my steam integration knowledge.</p>
+                                <p> 1. Simply to get better with steam integration.</p>
+                                <p> 2. Make a proper Steam Manager that I can reuse when making steam games.</p>
                             </div>
                         </div>
 
@@ -60,16 +62,274 @@
                           <div style="margin-left: 5px;">
                             <h3 style="color: #fabf66;">InputDisplay->Tldr</h3>
                             <p>Using the facepunch API I implemented a functional leaderboard, with friend/global categories.</p>
-                            <h3 style="color: #fabf66;">header</h3>
-                            <p>fill with text fill with textfill with textfill with textfill with textfill with textfill with textfill with textfill with textfill with textfill with textfill with textfill with textfill with textfill with textfill with textfill with textfill with textfill with textfill with text</p>
+                            <h3 style="color: #fabf66;">Explanation</h3>
+                            <p>The leaderboard is designed to handle showcasing the global leaderboard and the friend list specific leaderboard. Its also designed to be easily changeable and adaptable based on the developers need. I used a similiar system to showcase the top ranked player in the main menu togheter with the users own score in the bottom corner.</p>
+                            <img style="height: 45%; width: 100%; margin: 5%;" src="images/LeaderboardFriendlyness.png">
                           </div>
                           <img style="height: 100%; width: 70%; margin: 5%;" src="gifs/RainRunnerShowcase.gif">
                         </div>
 
                         <div class="box">
-                          <h2 class="oswald-font"; style="color: #E1E1E1" >Leaderboard | Code</h2>
+                          <h2 class="oswald-font"; style="color: #E1E1E1" >Leaderboard Logic | Code</h2>
+                          <h2 class="click-this">Click Here</h2>
                             <div class="hidden-text">
-                                <p> 1. Develop my steam integration knowledge.</p>
+                              <div class="code-snippet">
+                                <pre><code id="codeBlock">
+public class LeaderboardHandler : MonoBehaviour
+{
+    [Header("LeaderBoard References")]
+    [SerializeField]
+    public GameObject leaderBoardTemplate;
+
+    [SerializeField]
+    public Transform leaderBoardTransform;
+
+    [Header("LeaderBoard")]
+
+    public LeaderBoardDisplayCount totalToDisplay;
+
+    [Range(0,1000)]
+    public int appearDealy_ms;
+
+    private void OnEnable()
+    {
+        if (SteamClient.IsValid && leaderBoardTransform.childCount <= 0)
+            InitializeLeaderBoard(LeaderBoardType.Global);
+    }
+
+    public void ClearLeaderBoard()
+    {
+        foreach (Transform child in leaderBoardTransform)
+        {
+            Destroy(child.gameObject);
+
+        }
+    }
+    private async void InitializeLeaderBoard(LeaderBoardType leaderBoardType)
+    {
+        if (GameManager.Instance == null || SteamManager.Instance.leaderBoard == null || !SteamClient.IsValid) return;
+
+        var leaderBoard = SteamManager.Instance.leaderBoard;
+
+        if (leaderBoard.HasValue)
+        {
+            switch (leaderBoardType)
+            {
+                case LeaderBoardType.Global:
+
+                    var globalScores = await leaderBoard.Value.GetScoresAsync((int)totalToDisplay);
+                    foreach (var score in globalScores)
+                    {
+                        InstantiateLeaderboard(score);
+                        await Task.Delay(appearDealy_ms);
+                    }
+
+                break;
+
+                case LeaderBoardType.Friends:
+
+                    var friendScores = await leaderBoard.Value.GetScoresFromFriendsAsync();
+                    foreach (var score in friendScores)
+                    {
+                        InstantiateLeaderboard(score);
+                        await Task.Delay(appearDealy_ms);
+                    }
+
+                break;
+            }
+        }
+    }
+
+    public void InstantiateLeaderboard(LeaderboardEntry leaderboardEntry)
+    {
+        LeaderBoardTemplate template = Instantiate(leaderBoardTemplate, leaderBoardTransform).GetComponent<LeaderBoardTemplate>();
+        template.SetLeaderBoard("#" + leaderboardEntry.GlobalRank, leaderboardEntry.User.Name, leaderboardEntry.Score, leaderboardEntry.User.Id);
+    }
+
+    public void GlobalLeaderBoard()
+    {
+        ClearLeaderBoard();
+        InitializeLeaderBoard(LeaderBoardType.Global);
+    }
+    public void FriendsLeaderBoard()
+    {
+        ClearLeaderBoard();
+        InitializeLeaderBoard(LeaderBoardType.Friends);
+    }
+
+    private void Update()
+    {
+        SteamClient.RunCallbacks();
+    }
+
+    private void OnDisable()
+    {
+        ClearLeaderBoard();
+    }
+}
+
+public enum LeaderBoardType
+{
+    Global,
+    Friends
+}
+
+public enum LeaderBoardDisplayCount
+{
+    Top10 = 10,
+    Top25 = 25,
+    Top50 = 50,
+    Top75 = 75,
+    Top100 = 100,
+    Top500 = 500,
+    Top1000 = 1000,
+}
+                                </code></pre>
+                              </div>
+                            </div>
+                        </div>
+
+                        <div class="box">
+                          <h2 class="oswald-font"; style="color: #E1E1E1" >Leaderboard Entity / Image conversion | Code</h2>
+                          <h2 class="click-this">Click Here</h2>
+                            <div class="hidden-text">
+                              <div class="code-snippet">
+                                <pre><code id="codeBlock">
+public class LeaderBoardTemplate : MonoBehaviour
+{
+    public TextMeshProUGUI rankTexT;
+    public TextMeshProUGUI nameText;
+    public TextMeshProUGUI scoreText;
+    public RawImage avatarImage;
+
+    public async void SetLeaderBoard(string rank, string name, int time, SteamId steamId)
+    {
+        rankTexT.text = rank;
+        nameText.text = name;
+        scoreText.text = ConvertMillisecondsToTime(time);
+
+        var img = await SteamFriends.GetLargeAvatarAsync(steamId);
+        avatarImage.texture = GetTextureFromImage(img.Value);
+    }
+
+    public static Texture2D GetTextureFromImage(Steamworks.Data.Image image)
+    {
+        Texture2D texture = new Texture2D((int)image.Width, (int)image.Height);
+
+        for (int x = 0; x < image.Width; x++)
+        {
+            for (int y = 0; y < image.Height; y++)
+            {
+                var p = image.GetPixel(x, y);
+                texture.SetPixel(x, (int)image.Height - y, new UnityEngine.Color(p.r / 255.0f, p.g / 255.0f, p.b / 255.0f, p.a / 255.0f));
+            }
+        }
+
+        texture.Apply();
+        return texture;
+    }
+
+    string ConvertMillisecondsToTime(int milliseconds)
+    {
+        TimeSpan timeSpan = TimeSpan.FromMilliseconds(milliseconds);
+        string formattedTime = string.Format("{0:D2}:{1:D2}.{2:D2}",
+            timeSpan.Minutes,
+            timeSpan.Seconds,
+            timeSpan.Milliseconds / 10); // Divide by 10 to get the FF part
+
+        return formattedTime;
+    }
+}
+                                </code></pre>
+                              </div>
+                            </div>
+                        </div>
+
+                        <div class="box">
+                          <h2 class="oswald-font"; style="color: #E1E1E1" >Steam Manager | Code</h2>
+                          <h2 class="click-this">Click Here</h2>
+                            <div class="hidden-text">
+                              <div class="code-snippet">
+                                <pre><code id="codeBlock">
+public class SteamManager : MonoBehaviour
+{
+    [Header("Steam")]
+    public uint appId;
+
+    [Header("Events")]
+    public UnityEvent SteamConnected;
+
+    public Leaderboard? leaderBoard;
+
+    public static SteamManager Instance;
+
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            Instance = this;
+            DontDestroyOnLoad(this);
+        }
+    }
+    void OnEnable()
+    {
+        if (SteamClient.IsValid)
+        {
+            SteamConnected?.Invoke();
+            return;
+        }
+        try
+        {
+            SteamClient.Init(appId);
+            StartCoroutine(InitializeLeaderboardReference());
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogError(e);
+        }
+    }
+
+    public IEnumerator InitializeLeaderboardReference()
+    {
+        var leaderboardTask = GetLeaderboard("ScoreBoard");
+        yield return new WaitUntil(() => leaderboardTask.IsCompleted);
+
+        if (leaderboardTask.Exception != null)
+        {
+            Debug.LogError(leaderboardTask.Exception.GetBaseException());
+        }
+        else
+        {
+            leaderBoard = leaderboardTask.Result;
+            SteamConnected?.Invoke();
+        }
+    }
+
+    public async Task<Leaderboard> GetLeaderboard(string leaderboardName)
+    {
+        try
+        {
+            var leaderboardToFind = await SteamUserStats.FindLeaderboardAsync(leaderboardName);
+            return leaderboardToFind.Value;
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogError(e);
+            throw;
+        }
+    }
+
+    private void OnApplicationQuit()
+    {
+        SteamClient.Shutdown();
+    }
+}
+                                </code></pre>
+                              </div>
                             </div>
                         </div>
 

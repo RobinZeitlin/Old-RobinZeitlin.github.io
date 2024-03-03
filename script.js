@@ -13,14 +13,14 @@ function redirectTo(url) {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-    const boxes = document.querySelectorAll(".box"); // Use querySelectorAll to select all boxes
+  const boxes = document.querySelectorAll(".box"); // Use querySelectorAll to select all boxes
 
-    boxes.forEach(function (box) {
-        box.addEventListener("click", function () {
-            const hiddenText = box.querySelector(".hidden-text");
-            hiddenText.style.display = hiddenText.style.display === "none" ? "block" : "none";
-        });
-    });
+  boxes.forEach(function (box) {
+      box.addEventListener("click", function () {
+          const hiddenText = box.querySelector(".hidden-text");
+          hiddenText.style.display = (hiddenText.style.display === "none" || hiddenText.style.display === "") ? "block" : "none";
+      });
+  });
 });
 
 function copyCode() {
