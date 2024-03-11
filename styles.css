@@ -235,20 +235,18 @@ img {
     left: 90%;
     width: 100px;
     height: auto;
-    animation: scaleSocials 1s linear infinite;
 }
 
-@keyframes scaleSocials {
-    0% {
-        transform: translate(0, 0);
-    }
-    50% {
-        transform: scale(1.05, 1.05)
-    }
-    100% {
-        transform: translate(0, 0);
-    }
-}
+.corner-container {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    background-color: #f9f9f91c;
+    border-radius: 2vh;
+    color: #0004ff;
+    padding: 10px;
+    z-index: 10;
+  }
 
 .card .hover-gif {
     position: absolute;

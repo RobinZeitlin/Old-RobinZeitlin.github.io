@@ -11,6 +11,18 @@ body {
     height: 100%;
 }
 
+.corner-container {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  background-color: #f9f9f91c;
+  border-radius: 1.5vh;
+  color: #0004ff;
+  padding: 10px;
+  font-size: smaller;
+  z-index: 10;
+}
+
 /*Scrollbar*/
 ::-webkit-scrollbar-track {
     background: #524c4c; /* Color of the track */
@@ -62,7 +74,7 @@ body {
     transform-origin: left top;
     white-space: nowrap;
     position: absolute;
-    top: 98%;
+    top: 50%;
     left: 98%;
     color: #584e46;
     font-size: 25px;
