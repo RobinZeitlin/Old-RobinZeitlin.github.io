@@ -24,7 +24,7 @@ body {
 .hover-text {
   transition: transform 0.3s ease;
   display: inline-block;
-  font-size: x-small;
+  font-size: small;
   text-decoration: none;
 }
 
