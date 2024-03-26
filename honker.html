@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="stylesfocused.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <title>Robin Zeitlin</title>
+    <style>
+        /* Scrollbar styling for WebKit browsers */
+        ::-webkit-scrollbar {
+          width: 12px; /* Width of the scrollbar */
+        }
+
+        .seymour-one-font {
+          font-family: 'Seymour One', sans-serif;
+        }
+
+      </style>
+
+<link rel="stylesheet" href="prism.css" data-noprefix>
+<script src="prism.js" defer></script>
+</head>
+<div>
+    <body>
+
+      <div class="corner-container">
+        <a class="hover-text" style="color: #6093ff" ; href="https://www.linkedin.com/in/robin-zeitlin-778a9127a/">Robin Zeitlin | LinkedIn</a>
+        <p></p>
+        <a class="hover-text" style="color: #6093ff" ;href="https://github.com/RobinZeitlin?tab=repositories">Robin Zeitlin | Github</a>
+        <p></p>
+        <a class="hover-text" style="color: #6093ff" ;href="mailto:robin.zeitlin@hotmail.com">robin.zeitlin@hotmail.com</a>
+        <p></p>
+        <a class="hover-text" style="color: #6093ff"; href="tel:+4670-835-6431">+4670-835-6431</a>
+      </div>
+
+        <div class="background-container">
+            <img src="images/beige.jpg">
+            <img class="moving-image-background" src="images/overlay2.png">
+
+            <div class="vertical-text">
+              Made by Robin.
+            </div>
+
+            <div class="title-text"> 
+              <h1 class="seymour-one-font"> </h1>
+            </div>
+
+                <div class="smallContainer" opacity>
+                    <div class="video" opacity>
+                      <iframe width="100%" height="70%" src="https://www.youtube.com/embed/rxnmJRQE6Mk?si=XByC7Z6yu9EnNU9f" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    <div class="text-under-video">
+
+                      <div style="display: flex;">
+                        <h1 style="font-size: 8vh; margin: 5%;">Caviar.</h1>
+                        <div style="margin-left: 10px;">
+                          <p>After the release of my first steam title BadDool. I decided to start releasing one game every month. But because its so important for me to learn new things, I decided to make these projects based on things I wanted to learn.</p>
+                          <p>For this project my main focus was AI and more specifically Behaviour Trees. I came up with two concepts, but decided to go all in on fish behavior because it also lets me look into boids which seemed very interesting.</p>
+                          <p>I decided to document the process everyday in a "Dev Diary". So feel free to read more about the process under the dev Diary category. As always the components I built for this project will be available under my Component page.</p>
+                        </div>
+                      </div>
+
+
+                      
+                      <div class="box-container">
+                        
+                        <div class="box">
+                          <h2 class="oswald-font"; style="color: #E1E1E1" >Goals</h2>
+                          <h2 class="click-this">Click Here</h2>
+                          <div class="hidden-text">
+                              <p> 1. Learn AI behaviour such as behaviour trees.</p>
+                              <p> 2. Publish my second steam game.</p>
+                              <p> 3. Publish a game made in a month.</p>
+                              <div class="my-line"></div>
+                              <P> Ive succesfully looked into AI behavior and feel comfortable using it on a more intermediate level, the game will be published on the 16 of april.</P>
+                          </div>
+                        </div>
+
+                          <div class="box">
+                            <h2 class="oswald-font"; style="color: #E1E1E1" >Dev Diary</h2>
+                            <h2 class="click-this">Click Here</h2>
+                            <div class="hidden-text">
+                                <h2 class="oswald-font">Day 1</h2>
+                                <p class="oswald-font">Yesterday I had a strange dream. In this dream, fish swirled around me and it was my job to photograph them. I have just finished my AI course at future games and just published my first steam game. So I am ready to take on something new and exciting. Today I spent time on the basics of the project. I set up the Behaviour Tree, Three of the actions, simple Movement and also due to my previous experience with procedural generation also a procedurally generated ocean floor. I wanna make this AI as scalable and modular as possible.</p>
+                                <div class="text-image">
+                                    <img src="images/Caviar/Day1.png">
+                                </div>
+                                <div class="my-line"></div>
+
+                                <h2 class="oswald-font">Day 2</h2>
+                                <p class="oswald-font">Today I spent a lot of time working on setting up the dev diary and adding coding snippet support for my portfolio. I began adding the eating action. I spent a lot of time figuring out how to make it as modular as possible and came up with a good solution of using enums to set the preferred food of the animal and then also using another set of enums on the “Food/Algae” gameobject that I can compare with the other enum to see if they are compatible (See picture below).</p>
+                                <div class="text-image">
+                                    <img src="images/Caviar/Day2.png">
+                                </div>
+                                <div class="my-line"></div>
+
+                                <h2 class="oswald-font">Day 3</h2>
+                                <p class="oswald-font">I spent a lot of time developing something I think is extremely exciting and a little bit over engineered today. I store object types in enum variables and then compare those with a hash-table. Using the enums as keys lets me grab the correct contains meshes and materials easily. I then also added a button to the inspector to call the function if pressed. </p>
+                                <p class="oswald-font">The point of me making the system this way is that instead of having 20 prefabs of every food type, I will instead be able to simply spawn the same prefab for every type of food and then just change the enum on the script on the GameObject.</p>
+                                <div class="text-image">
+                                    <img src="images/Caviar/Day3.png">
+                                </div>
+                                <div class="my-line"></div>
+
+                                <h2 class="oswald-font">Day 4</h2>
+                                <p class="oswald-font">Today was a good day, I decided to buy the asset pack and the steam page is now completely up and running. I implemented the movement system today. The acceleration and de-aceleration is decided by animation curves so that I later can just go and tweak it when the time is given.  </p>
+                                <p class="oswald-font">I also started implementing the Camera system today. It takes a picture of the screen and then overlays the pictures to fit the polaroid format.</p>
+                                <div class="text-image">
+                                    <img src="images/Caviar/Day4.png">
+                                </div>
+                                <div class="my-line"></div>
+
+                                <h2 class="oswald-font">Day 5</h2>
+                                <p class="oswald-font"> The Camera system is now basically fully implemented I added a stamp to the polaroid to market the game by just having people sharing their cute photos. (See picture below)</p>
+                                <p class="oswald-font"> I also finished up the mailbox, settup the interactable system and started implementing the bubbling photos mechanic. Which means the mailbox now get spawned at the center of the map, and if you interact with it while carrying a photo, the photo gets sendt of inside of a bubble.
+                                <div class="text-image">
+                                    <img src="images/Caviar/Day5.png">
+                                </div>
+                                <div class="my-line"></div>
+
+                                <h2 class="oswald-font">Day 6</h2>
+                                <p class="oswald-font"> Today was very rewarding, registering what is photographed now works by boxcasting forward, I chose this because using a raycast would cast the player to be forced to be extremely precise when trying to take photos of fish.</p>
+                                <p class="oswald-font"> I also connected the level up system to this new registering what is photographed system which means I can now succesfully take a photograph of the target thing and make the ecosystem evolve! I also started working on the pause as I dont want it to be postponed and made on the last day before release.</p>
+                                <div class="text-image">
+                                    <img src="images/Caviar/Day6.png">
+                                </div>
+                                <div class="my-line"></div>
+
+                                <h2 class="oswald-font">Day 7</h2>
+                                <p class="oswald-font"> I finished up the pause menu today, implementing all its functionallity and splitting up a "bobbing" script into a component to be used else where if needed. I also added a juicyness component that when "OnEnable" triggers Invokes a unity event and scales the object to the correct size from zero causing the appearance to be smoother and more "naturul".</p>
+                                <p class="oswald-font"> I also finally started working on boids. Its extremely interesting and learning how to utilize "Weights" in this case the Cohesion, Seperation and Alignment feels very rewarding. To read more about this please refer to my "Boids" walk-through.</p>
+                                <div class="text-image">
+                                    <img src="images/Caviar/Day7.png">
+                                </div>
+                                <div class="my-line"></div>
+
+                                <h2 class="oswald-font">Day 8</h2>
+                                <p class="oswald-font">I finally was able to restrict the players movement area by clamping the poisiton of the player within a sphere. I also spent some time and made a ascript that dynamically places fences based on how big this area is as seen below.</p>
+                                <div class="text-image">
+                                    <img src="images/Caviar/Day8.gif">
+                                </div>
+                                <div class="my-line"></div>
+
+                                <h2 class="oswald-font">Day 9, 10, 11 & 12</h2>
+                                <p class="oswald-font">Last days of GP which left me with no time to work on the game.</p>
+                                <div class="text-image">
+                                </div>
+                                <div class="my-line"></div>
+
+                                <h2 class="oswald-font">Day 13</h2>
+                                <p class="oswald-font">Finally GP is finished and I have time to work on my game! I spent this wonderfull friday making the game controller compatible, luckily because I was using the "new" Input system the process of converting the controlls was fairly quick and easy. One problem that i was faced with was how the player would know how to play the game with the controller. Therefore I spent the rest of the afternoon working on a system that changes a sprite basd on the type of input currently connected (as seen below in screenshots). </p>
+                                <div class="text-image">
+                                  <img src="images/Caviar/Day13.png">
+                                </div>
+                                <p class="oswald-font">I am very pleased with this system as it lets me easily add and change sprites for the input types in the inspector. And because I wanted this system to be reusable I also spent some time making a small editor script that makes the inspector more readable and the component easier to use.</p>
+                                <div class="my-line"></div>
+                                
+                                <h2 class="oswald-font">Day 14</h2>
+                                <p class="oswald-font">Today I spent most of the day making the Manatee. Its behaviour is abit different from the other animals ive made due to how interactive it is for the player. To explain it simply the behaviour is Fetch, the same activity as one would play with their dog.</p>
+                                <div class="text-image">
+                                  <img src="images/Caviar/Day14.png">
+                                </div>
+                                <div class="my-line"></div>
+                              
+                              </div>
+                            
+                          </div>
+                          
+                          
+
+                          <div class="my-line"></div>
+
+                          <div style="display: flex;">
+                            <img style="height: 30%; width: 30%; margin: 5%;" src="images/boids.png">
+                            <div style="margin-left: 10px;">
+                              <h2 style="color: #fabf66;"> Boids -> Tldr</h2>
+                              <p>Boid behavior persists of 3 things: Cohesion, Separation and Alignment. By using these three weights I can add them up and get the direction of which the fish should be facing in order to move correctly.</p>
+                              <h3 style="color: #fabf66;">Cohesion</h3>
+                              <p>Cohesion isdirection towards them all, dividing it by the amount of fish in the flock and then normalizing it and using it as a weight.</p>
+                              <h3 style="color: #fabf66;">Alignment</h3>
+                              <p>Alignment is calculated by adding all of the fish in the flocks transform forward into one variable and dividing them with the total amount of fish in the flock.</p>
+                              <h3 style="color: #fabf66;">Seperation</h3>
+                              <p>Separation is calculated by taking all of the fish in the flock, adding their directions compared to the main fish together and then normalizing it.</p>
+                            </div>
+                          </div>
+                          
+                          <div class="box">
+                          <h2 class="oswald-font">Boids | Code</h2>
+                          <h2 class="click-this">Click Here</h2>
+                          <div class="hidden-text">
+                            <div class="code-snippet">
+                              <h2 class ="oswald-font">//Cohesion.</h2>
+                              <pre><code id="codeBlock">
+    private Vector3 CalculateCohesion(Animal animal)
+    {
+        Vector3 flockCenter = Vector3.zero;
+        float neighbourDistance = 5;
+        int groupSize = 0;
+
+        GameObject[] allFish = GlobalFlock.allFish;
+
+        foreach (GameObject thisFish in allFish)
+        {
+            if (thisFish != animal.gameObject)
+            {
+                float dist = Vector3.Distance(thisFish.transform.position, animal.transform.position);
+
+                if (dist <= neighbourDistance)
+                {
+                    flockCenter += thisFish.transform.position;
+                    groupSize++;
+                }
+            }
+        }
+                              </code></pre>
+                            </div>
+
+
+                          <div class="code-snippet">
+                            <h2 class ="oswald-font">//Seperation.</h2>
+                            <pre><code id="codeBlock">
+    private Vector3 CalculateSeparation(Animal animal)
+    {
+        Vector3 separation = Vector3.zero;
+        float neighbourDistance = 5;
+
+        GameObject[] allFishes = GlobalFlock.allFish;
+
+        foreach (GameObject thisFish in allFishes)
+        {
+            if (thisFish != animal.gameObject)
+            {
+                float dist = Vector3.Distance(thisFish.transform.position, animal.transform.position);
+
+                if (dist <= neighbourDistance)
+                {
+                    separation += (animal.transform.position - thisFish.transform.position).normalized;
+                }
+            }
+        }
+
+        return separation;
+    }
+                            </code></pre>
+                          </div>
+
+                        <div class="code-snippet">
+                          <h2 class ="oswald-font">//Alignment.</h2>
+                          <pre><code id="codeBlock">
+    private Vector3 CalculateAlignment(Animal animal)
+    {
+        Vector3 averageHeading = Vector3.zero;
+        float neighbourDistance = 5;
+        int groupSize = 0;
+
+        GameObject[] gos = GlobalFlock.allFish;
+
+        foreach (GameObject g in gos)
+        {
+            if (g != animal.gameObject)
+            {
+                float dist = Vector3.Distance(g.transform.position, animal.transform.position);
+
+                if (dist <= neighbourDistance)
+                {
+                    averageHeading += g.transform.forward;
+                    groupSize++;
+                }
+            }
+        }
+
+        if (groupSize > 0)
+        {
+            averageHeading /= groupSize;
+            return averageHeading.normalized;
+        }
+        else
+        {
+            return Vector3.zero;
+        }
+    }
+                          </code></pre>
+                        </div>
+                        </div>
+                          </div>
+
+                          <div style="display: flex;">
+                            <div style="margin-left: 5px;">
+                              <h3 style="color: #fabf66;">InputDisplay->Tldr</h3>
+                              <p>System changes sprite based on inputtype, very user friendly and made so designers easily can adapt game to console.</p>
+                              <h3 style="color: #fabf66;">How it works</h3>
+                              <p>To use this the user simply drops the component onto a UI image and select wether or not the indicator should be displayed during runtime. It then changes based on the current input type.</p>
+                            </div>
+                            <img style="height: 30%; width: 100%; margin: 5%;" src="images/SpriteChange.png">
+                          </div>
+                          
+
+                          
+                          <div style="text-align: center; margin-left:10%">
+                            <h1 style="color: #fabf66;">Showcase</h1>
+                            <img style="height: 30%; width: 60%; display: block; margin: auto;" src="images/ShowcaseInputDisplay.gif">
+                            <p></p>
+                          </div>
+
+                          <div class="box">
+                            <h2 class="oswald-font">Input Display</h2>
+                            <h2 class="click-this">Click Here</h2>
+                              <div class="hidden-text">
+                                <div class="code-snippet">
+                                  <pre><code id="codeBlock">
+[CustomEditor(typeof(InputTypeDetector)), CanEditMultipleObjects]
+public class InputEditor : Editor
+{
+    public override void OnInspectorGUI()
+    {
+        InputTypeDetector inputTypeDetector = (InputTypeDetector)target;
+
+        EditorGUILayout.BeginHorizontal();
+
+        if (inputTypeDetector.KeyboardIcon == null)
+            inputTypeDetector.KeyboardIcon = (Sprite)AssetDatabase.LoadAssetAtPath("Assets/Editor/Icons/Missing.png", typeof(Sprite));
+
+        if (inputTypeDetector.DisplayKeyboardIcon)
+            inputTypeDetector.KeyboardIcon = (Sprite)EditorGUILayout.ObjectField("Keyboard Icon", inputTypeDetector.KeyboardIcon, typeof(Sprite), false);
+
+        inputTypeDetector.DisplayKeyboardIcon = EditorGUILayout.Toggle("Display Keyboard Icon?", inputTypeDetector.DisplayKeyboardIcon);
+
+        EditorGUILayout.EndHorizontal();
+
+        EditorGUILayout.BeginHorizontal();
+
+        if(inputTypeDetector.GamepadIcon == null)
+            inputTypeDetector.GamepadIcon = (Sprite)AssetDatabase.LoadAssetAtPath("Assets/Editor/Icons/Missing.png", typeof(Sprite));
+
+        if(inputTypeDetector.DisplayGamepadIcon)
+        inputTypeDetector.GamepadIcon = (Sprite)EditorGUILayout.ObjectField("GamePad Icon", inputTypeDetector.GamepadIcon, typeof(Sprite), false);
+
+        inputTypeDetector.DisplayGamepadIcon = EditorGUILayout.Toggle("Display GamePad Icon?", inputTypeDetector.DisplayGamepadIcon);
+
+        EditorGUILayout.EndHorizontal();
+
+        // Apply changes to the serialized object
+        if (GUI.changed)
+        {
+            EditorUtility.SetDirty(inputTypeDetector);
+        }
+    }
+}
+                                  </code></pre>
+                                </div>
+
+                                <div class="code-snippet">
+                                  <pre><code id="codeBlock">
+public class InputTypeDetector : MonoBehaviour
+{
+    private Image inputIcon;
+
+    [SerializeField] public Sprite KeyboardIcon;
+    [SerializeField] public bool DisplayKeyboardIcon;
+
+    [SerializeField] public Sprite GamepadIcon;
+    [SerializeField] public bool DisplayGamepadIcon;
+
+    private void OnEnable()
+    {
+        inputIcon = GetComponent<Image>();
+
+        InputSystem.onDeviceChange += OnDeviceChange;
+
+        CheckInputType();
+    }
+
+    private void OnDisable()
+    {
+        InputSystem.onDeviceChange -= OnDeviceChange;
+    }
+    private void OnDeviceChange(InputDevice device, InputDeviceChange changeType)
+    {
+        CheckInputType();
+    }
+
+    public void CheckInputType()
+    {
+        inputIcon.sprite = Gamepad.current != null && DisplayGamepadIcon ? GamepadIcon :
+                   Keyboard.current != null && DisplayKeyboardIcon ? KeyboardIcon :
+                   (Sprite)AssetDatabase.LoadAssetAtPath("Assets/Editor/Icons/noneIcon.png", typeof(Sprite));
+
+    }
+}
+                                  </code></pre>
+                                </div>
+                                
+                              </div>
+                            </div>
+
+                          
+                            <!--
+                          <div class="box">
+                          <h2 class="oswald-font"; style="color: #E1E1E1" >Behaviour Tree | Animal eating </h2>
+                          <div class="hidden-text">
+                              <p class="oswald-font">I started by making a new action for the behavior tree and added the proper “override Nodestate Evaluate()” function with a reference to the Animal. I needed to make sure that the behavior would only be called if it was time for the fish to eat so I added the proper variables in the animal class (maxHunger, currentHunger) I also added a failcheck to the function which makes sure the animal has a preferred food so it wouldn't cause a problem if someone fails to add the appropriate enum value.</p>
+                              
+                              <div class="code-snippet">
+                                <h2 class ="oswald-font">//Variables Needed.</h2>
+                                <button class="copy-btn" onclick="copyCode()">Copy</button>
+                                <pre><code id="codeBlock">
+[Header("Animal Hunger")]
+public int maxHunger;
+[ReadOnly] public int currentHunger;
+public FoodType preferedFood;
+                                </code></pre>
+                              </div>
+
+                              <div class="code-snippet">
+                                <h2 class ="oswald-font">//Settup and Failcheck.</h2>
+                                <button class="copy-btn" onclick="copyCode()">Copy</button>
+                                <pre><code id="codeBlock">
+public override NodeState Evaluate()
+{
+    Animal animal = behaviourTree as Animal;
+
+    //Failcheck
+    if(animal.preferedFood == FoodType.Missing)
+    {
+        Debug.LogWarning("Animal " + animal.name + " has no prefered food type");
+        return NodeState.Failure;
+    }
+}
+                                </code></pre>
+                              </div>
+
+                              <p class="oswald-font">I compare the currentHunger and the maxHunger to only run the action if the animal is hungry. After that I checked if the current food was null. If so The script finds all the Objects with the Food class. It then takes the enum which the class references and compares that to the Animals preferedFood (FoodType) enum and stores the ones that matches in a separate Variable. After that It goes through all of the compatible food references and finds the one closest to the Animal and assigns that as the current food. </p>
+                              <div class="code-snippet">
+                                <h2 class ="oswald-font">//Behaviour Logic.</h2>
+                                <button class="copy-btn" onclick="copyCode()">Copy</button>
+                                <pre><code id="codeBlock">
+if (animal.currentHunger < animal.maxHunger / 2)
+{
+  if(currentFood == null)
+  {
+    Food[] food = FindObjectsOfType<Food>();
+                                  
+    List<Food> foodThatAnimalLikes = GetFood(food, animal);
+    currentFood = ClosestFood(foodThatAnimalLikes, animal);
+  }
+  else
+  {
+    MoveToFood(animal);
+                                  
+    if(CloseToFood(animal))
+      return NodeState.Success;
+  }
+                                  
+  return NodeState.Running;
+}
+else
+{
+  return NodeState.Failure;
+}
+                                </code></pre>
+                              </div>
+
+                              <div class="code-snippet">
+                                <h2 class ="oswald-font">//Find Food.</h2>
+                                <button class="copy-btn" onclick="copyCode()">Copy</button>
+                                <pre><code id="codeBlock">
+    //Find all the food that the animal likes.
+    public List<Food> GetFood(Food[] allFood, Animal animal)
+    {
+        List<Food> foodThatAnimalLikes = new List<Food>();
+
+        foreach (Food aFood in allFood)
+        {
+            if (aFood.foodType == animal.preferedFood)
+            {
+                foodThatAnimalLikes.Add(aFood);
+            }
+        }
+
+        return foodThatAnimalLikes;
+    }
+                                </code></pre>
+                              </div>
+                              
+                              <div class="code-snippet">
+                                <h2 class ="oswald-font">//Compare Food Types.</h2>
+                                <button class="copy-btn" onclick="copyCode()">Copy</button>
+                                <pre><code id="codeBlock">
+    //Find the closest food to the animal using the list of food sorted by preference.
+    public Food ClosestFood(List<Food> foodThatAnimalLikes, Animal animal)
+    {
+        float closestDistance = Mathf.Infinity;
+        Food closestFood = null;
+
+        foreach (Food aFood in foodThatAnimalLikes)
+        {
+            float distance = Vector3.Distance(animal.transform.position, aFood.transform.position);
+
+            if (distance < closestDistance)
+            {
+                closestDistance = distance;
+                closestFood = aFood;
+            }
+        }
+
+        return closestFood;
+    }
+                                </code></pre>
+                              </div>
+                              
+                              <p class="oswald-font">And finally we do the Movement. It moves the animal and rotates it appropriately. Then I check if the food is close enough to the Animal and if so the animal “Eats the food”.  </p>
+                              <div class="code-snippet">
+                                <h2 class ="oswald-font">//Is the Animal within eating range.</h2>
+                                <button class="copy-btn" onclick="copyCode()">Copy</button>
+                                <pre><code id="codeBlock">
+public bool CloseToFood(Animal animal)
+{
+    if (Vector3.Distance(animal.transform.position, currentFood.transform.position) < 0.1f)
+    {
+        animal.currentHunger = animal.maxHunger;
+        currentFood = null;
+        return true;
+    }
+    return false;
+}
+                                </code></pre>
+                              </div>
+
+                              <div class="code-snippet">
+                                <h2 class ="oswald-font">//Movement and Rotation.</h2>
+                                <button class="copy-btn" onclick="copyCode()">Copy</button>
+                                <pre><code id="codeBlock">
+//Move animal towards food.
+public void MoveToFood(Animal animal)
+{
+    animal.transform.position = MoveVector(animal);
+    animal.transform.LookAt(currentFood.transform);
+}
+
+//Move animal towards food.
+public Vector3 MoveVector(Animal animal)
+{
+    Vector3 moveTo = Vector3.MoveTowards(
+    animal.transform.position,
+    currentFood.transform.position,
+    animal.moveSpeed * Time.deltaTime);
+
+    return moveTo;
+}
+                                </code></pre>
+                              </div>
+
+                              <div class="code-snippet">
+                                <h2 class ="oswald-font">//Is the Animal close enough to eat?.</h2>
+                                <button class="copy-btn" onclick="copyCode()">Copy</button>
+                                <pre><code id="codeBlock">
+public bool CloseToFood(Animal animal)
+{
+    if (Vector3.Distance(animal.transform.position, currentFood.transform.position) < 0.1f)
+    {
+        animal.currentHunger = animal.maxHunger;
+        currentFood = null;
+        return true;
+    }
+    return false;
+}
+                                </code></pre>
+                              </div>
+
+                              <div class="text-image">
+                                  <img src="images/another-image.jpg">
+                              </div>
+                          </div>
+                          </div>-->
+                          
+                          <div class="my-line"></div>
+                          <p></p>
+
+
+                        <h2 class="oswald-font"; style="text-align:center">Thank you for reading.</h2>
+                    </div>  
+                    
+            </div>
+        </div>
+        <script src="script.js"></script>
+    </body>
+</html>
+
+</div>
