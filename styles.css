@@ -160,7 +160,7 @@ img {
     top: 85%;
     left: 75%;
     transform: translate(-50%, -50%);
-    opacity: 1;
+    opacity: 0;
     transition: opacity 0.3s ease-in-out;
     width: 100px; /* Set a fixed width for the overlay image */
     height: auto; /* Set a fixed height for the overlay image */
@@ -173,7 +173,7 @@ img {
     top: 85%;
     left: 25%;
     transform: translate(-50%, -50%);
-    opacity: 1;
+    opacity: 0;
     transition: opacity 0.3s ease-in-out;
     width: 100px; /* Set a fixed width for the overlay image */
     height: auto; /* Set a fixed height for the overlay image */
