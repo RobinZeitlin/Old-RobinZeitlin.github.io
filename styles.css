@@ -2,7 +2,7 @@ body {
     margin: 0;
     overflow-y: scroll;
     overflow-x: hidden;
-    background-image: linear-gradient(#2C3639, #3F4E4F, #2C3639);
+    background-image: linear-gradient(#353738, #353738, #353738);
     background-size: 100%;
 }
 
@@ -112,7 +112,7 @@ img {
   .box {
     width: 20%;
     height: 75px;
-    background-color: #2C3639;
+    background-color: #282a2b;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -191,7 +191,7 @@ img {
     height: auto; /* Set a fixed height for the overlay image */
     border-radius: 100%;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.6); /* Adjust the box-shadow as needed */
-    outline: 6px solid #2C3639; /* Adjust the outline thickness and color as needed */
+    outline: 6px solid #be9351; /* Adjust the outline thickness and color as needed */
     z-index: 2;
 }
 

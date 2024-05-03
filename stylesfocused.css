@@ -64,6 +64,8 @@ body {
     opacity: 0.8;
     animation: moveImageBackground 200s linear infinite;
     background-size: cover;
+    filter: blur(16px);
+    -webkit-filter: blur(16px);
 }
 
 @keyframes moveImageBackground {
@@ -149,7 +151,7 @@ body {
     top: 55%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: #758280;
+    background-color: #474747;
     z-index: 1;
     border-radius:  1%;
 }
@@ -166,7 +168,7 @@ body {
     width: 100%;
     padding: 2px;
     padding-left: 2%;
-    background-color: #3C4A4B;
+    background-color: #282a2b;
     text-align: left;
     
     cursor: pointer;
