@@ -3,69 +3,84 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="aboutme.css">
+    <link rel="stylesheet" type="text/css" href="stylesfocused.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200&family=Seymour+One&display=swap" rel="stylesheet">
     <title>Robin Zeitlin</title>
     <style>
         /* Scrollbar styling for WebKit browsers */
         ::-webkit-scrollbar {
           width: 12px; /* Width of the scrollbar */
         }
-    
-        ::-webkit-scrollbar-track {
-          background: #f1f1f104; /* Color of the track */
-        }
-    
-        ::-webkit-scrollbar-thumb {
-          background: #303030; /* Color of the handle */
-          border-radius: 10px;
-        }
-    
-        ::-webkit-scrollbar-thumb:hover {
-          background: #252525;
-          border-radius: 10px;
-        }
-    
-        /* Scrollbar styling for Firefox */
-        html {
-          scrollbar-color: #f1f1f1 #888;
-        }
-    
-        html:hover {
-          scrollbar-color: #f1f1f1 #555;
-        }
-
-        .oswald-font {
-        font-family: 'Oswald', sans-serif;
-        }
 
         .seymour-one-font {
-        font-family: 'Seymour One', sans-serif;
+          font-family: 'Seymour One', sans-serif;
+        }
+
+        .rounded-image {
+            border-radius: 100%;
+            overflow: hidden;
+            object-fit: cover;
+            width: 30%;
+            height: 30%;
+            margin: 5%;
+            border-radius: 100%;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.6); /* Adjust the box-shadow as needed */
+            outline: 6px solid #be9351; /* Adjust the outline thickness and color as needed */
         }
 
       </style>
+
+<link rel="stylesheet" href="prism.css" data-noprefix>
+<script src="prism.js" defer></script>
 </head>
 <div>
     <body>
 
+      <div class="corner-container">
+        <a class="hover-text" style="color: #6093ff" ; href="https://www.linkedin.com/in/robin-zeitlin-778a9127a/">Robin Zeitlin | LinkedIn</a>
+        <p></p>
+        <a class="hover-text" style="color: #6093ff" ;href="https://github.com/RobinZeitlin?tab=repositories">Robin Zeitlin | Github</a>
+        <p></p>
+        <a class="hover-text" style="color: #6093ff" ;href="mailto:robin.zeitlin@hotmail.com">robin.zeitlin@hotmail.com</a>
+      </div>
+
         <div class="background-container">
             <img src="images/beige.jpg">
-            <img class="moving-image-background" src="images/overlay.jpg">
+            <img class="moving-image-background" src="images/Honker/honkershowcase.png">
+
+            <div class="vertical-text">
+              Made by Robin.
+            </div>
 
             <div class="title-text"> 
-              <h1 class="seymour-one-font"> About Me</h1>
+              <h1 class="seymour-one-font"> </h1>
             </div>
 
                 <div class="smallContainer" opacity>
-                  <div id="respond">
-                  
-                  </div>
-                </div>  
+                    <div class="video" opacity>
+                      <div class="text-under-video">
 
+                        <div style="display: flex; align-items: center;">
+
+                          <div class="rounded-image">
+                              <img src="images/portrait.jpg" style="width: 100%; height: 100%;" />
+                          </div>
+
+                          <div style="margin-left: 10px; display: flex; flex-direction: column; justify-content: center;">
+                            <h2 style="color: #fabf66;">Robin Zeitlin</h2>
+                            <p>Game Programmer currently studying at FutureGames. Seeking oppurtunities to contribute to game projects, learn new things and gain valueable experience.</p>
+
+                          </div>
+                      </div>
+
+                        <div class="my-line"></div>
+                          <p></p>
+                        <h2 class="oswald-font"; style="text-align:center">Thank you for reading.</h2>
+                    
             </div>
         </div>
+        <script src="script.js"></script>
     </body>
 </html>
 
