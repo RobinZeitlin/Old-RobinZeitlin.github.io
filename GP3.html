@@ -68,8 +68,15 @@
                           <h2 class="oswald-font"; style="color: #E1E1E1" >Goals</h2>
                           <h2 class="click-this">Click Here</h2>
                           <div class="hidden-text">
-                            <p>1. Efficiently work in a larger group project.</p>
-                            <p>2. Use C++ in Unreal Engine</p>
+                            <h2>Collaborate Efficiently in a Large Team</h2>
+                            <p><strong>Objective:</strong> Work effectively within a team of 11 members.</p>
+                            <p><strong>Approach:</strong> Use clear communication and organized task management to ensure smooth collaboration.</p>
+                            <p><strong>Result:</strong> Contribute to a productive and cohesive team environment.</p>
+                        
+                            <h2>Enhance C++ Skills in Unreal Engine</h2>
+                            <p><strong>Objective:</strong> Improve my C++ programming abilities in Unreal Engine.</p>
+                            <p><strong>Approach:</strong> Implement advanced C++ techniques to create and optimize game features.</p>
+                            <p><strong>Result:</strong> Develop a high-quality game that demonstrates my technical skills in Unreal Engine.</p>
                           </div>
                         </div>
 
@@ -94,23 +101,6 @@
                               <div class="hidden-text">
                                 <div class="code-snippet">
                                     <pre><code id="codeBlock">
-<h2 style="color: gray;">//Functions to handle aiming.</h2>
-void UPlayerThrowComponent::Aim()
-{
-    ChangeCameraState(true);
-    bIsAiming = true;
-}
-
-void UPlayerThrowComponent::StopAim()
-{
-    if (bReleaseToShoot)
-        SpawnAndFollowProjectile(TrajectoryPoints);
-
-    ChangeCameraState(false);
-    ClearTrajectoryMeshes();
-    bIsAiming = false;
-}
-
 <h2 style="color: gray;">//Main throw function.</h2>
 void UPlayerThrowComponent::Throw()
 {   
@@ -209,14 +199,15 @@ void UPlayerThrowComponent::Ray()
     }
     else 
     {
-        // If the ray doesn't hit anything, draw the curve to the end of the throw range
+        //If the ray doesn't hit anything, draw the curve to the end of the throw range
         FVector MousePosAtEdge = Start + WorldDirection * ThrowRange;
         float ThrowHeight = FVector::Distance(PlayerControllerRef->GetPawn()->GetActorLocation(), MousePosAtEdge) / 2 * ThrowMultiplier;
-		DrawThrowCurve(PlayerControllerRef->GetPawn()->GetActorLocation(), MousePosAtEdge, ThrowHeight, SmoothnessOfCurve, FColor::Red);
+
+		    DrawThrowCurve(PlayerControllerRef->GetPawn()->GetActorLocation(), MousePosAtEdge, ThrowHeight, SmoothnessOfCurve, FColor::Red);
     }
 }
 
-<h2 style="color: gray;">//Draw the throw curve.</h2>
+<h2 style="color: gray;">//Calculate the projectile trajectory.</h2>
 void UPlayerThrowComponent::DrawThrowCurve(const FVector& StartPoint, const FVector& EndPoint, float HeightOffset, int32 NumPoints, FColor Color)
 {
     if (NumPoints < 2) return;
@@ -230,16 +221,16 @@ void UPlayerThrowComponent::DrawThrowCurve(const FVector& StartPoint, const FVec
 
     for (int32 i = 1; i < NumPoints - 1; ++i)
     {
-        // Calculate t parameter between 0 and 1
+        //Calculate t parameter between 0 and 1
         float t = static_cast<float>(i) / (NumPoints - 1);
 
-        // Calculate the point on the line between StartPoint and EndPoint
+        //Calculate the point on the line between StartPoint and EndPoint
         FVector Point = FMath::Lerp(StartPoint, EndPoint, t);
 
-        // Calculate the parabolic height offset
+        //Calculate the parabolic height offset
         float ParabolicHeight = FMath::Square(t - 0.5f) * HeightOffset4 - HeightOffset;
 
-        // Adjust the Z component of the point to create the curve
+        //Adjust the Z component of the point to create the curve
         Point.Z -= ParabolicHeight;
 
         NewTrajectoryPoints.Add(Point);
@@ -249,6 +240,137 @@ void UPlayerThrowComponent::DrawThrowCurve(const FVector& StartPoint, const FVec
     TrajectoryPoints = MoveTemp(NewTrajectoryPoints);
 }
 
+<h2 style="color: gray;">//Spawn the projectile and set the trajectory points.</h2>
+void UPlayerThrowComponent::SpawnAndFollowProjectile(const TArray<FVector>& _TrajectoryPoints)
+{
+    if (ProjectileClass == nullptr && GEngine)
+    {
+        GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Red, TEXT("Missing projectile to spawn"));
+        return;
+    }
+    if (GetWorld())
+    {
+        AAProjectile* AProjectile = GetWorld()->SpawnActor<AAProjectile>(ProjectileClass, TrajectoryPoints[1], FRotator::ZeroRotator);
+        AProjectile->SetTrajectoryPoints(_TrajectoryPoints);
+
+        if (UnitToSpawn != nullptr) 
+        {
+          AProjectile->ToSpawnClass = UnitToSpawn;
+        }
+        else if(GEngine)
+        {
+	        GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Red, TEXT("Missing troop to spawn in the ThrowComponent"));
+        }  
+    }
+}
+
+                                  </code></pre>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="box">
+                              <h3 class="oswald-font">Move Projectile | Code</h3>
+                              <h3 class="click-this">Click Here</h3>
+                              <div class="hidden-text">
+                                <div class="code-snippet">
+                                    <pre><code id="codeBlock">
+<h2 style="color: gray;">//Spawn the projectile and set the trajectory points.</h2>
+AAProjectile::AAProjectile()
+{
+	PrimaryActorTick.bCanEverTick = true;
+
+	ProjectileMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("ProjectileMesh"));
+
+	static ConstructorHelpers::FObjectFinder<UStaticMesh> MeshAsset(TEXT("/Engine/BasicShapes/Sphere"));
+	if (MeshAsset.Succeeded())
+	{
+		ProjectileMesh->SetStaticMesh(MeshAsset.Object);
+		ProjectileMesh->SetRelativeScale3D(FVector(0.1f, 0.1f, 0.1f));
+		ProjectileMesh->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+	}
+
+	CurrentTrajectoryPointIndex = 0;
+}
+
+void AAProjectile::SetTrajectoryPoints(TArray<FVector> NewTrajectoryPoints)
+{
+	TrajectoryPoints = NewTrajectoryPoints;
+	CurrentTrajectoryPointIndex = 0;
+}
+
+void AAProjectile::Tick(float DeltaTime)
+{
+	Super::Tick(DeltaTime);
+
+	if (TrajectoryPoints.Num() > 0)
+	{
+		FVector CurrentLocation = GetActorLocation();
+		FVector TargetLocation = TrajectoryPoints[CurrentTrajectoryPointIndex];
+
+		SetActorLocation(FMath::VInterpConstantTo(CurrentLocation, TargetLocation, DeltaTime, Speed));
+
+		if (FVector::Distance(CurrentLocation, TargetLocation) < 0.1f)
+			CurrentTrajectoryPointIndex++;
+
+		if (CurrentTrajectoryPointIndex >= TrajectoryPoints.Num() - 1)
+		{
+			if (ToSpawnClass != nullptr)
+			{
+				ACharacter* SpawnedActor = nullptr;
+
+				FActorSpawnParameters SpawnParams;
+				SpawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
+
+				SpawnedActor = GetWorld()->SpawnActor<ACharacter>(ToSpawnClass, GetActorLocation(), GetActorRotation(), SpawnParams);
+
+				if (SpawnedActor != nullptr) 
+				{
+					GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Green, TEXT("Spawned troop"));
+					SpawnedActor->SpawnDefaultController();
+				}
+				else if (GEngine)
+					GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Red, TEXT("Failed to spawn troop"));
+			}
+			else if (GEngine)
+				GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Red, TEXT("Missing troop to spawn"));
+
+			Destroy();
+		}
+	}
+}
+
+
+void AAProjectile::BeginPlay()
+{
+	Super::BeginPlay();
+
+}
+
+                                  </code></pre>
+                                </div>
+                              </div>
+                            </div>
+
+                          <!--- Mid Showreel-->
+                          <div style="display: flex; align-items: center;">
+                            <figure style="text-align: center; margin: 0%;">
+                              <img style="height: 30%; width: 80%; margin: 5%; margin-bottom: 0%;" src="gifs/ShowcaseCurve.gif">
+                              <h3 style="color: #fabf66; margin-bottom: 5%; font-size: medium;">Showcase of trajectory meshes modified with the UFloatCurve</h3>
+                            </figure>
+                            
+                            <div style="margin-left: 10px; display: flex; flex-direction: column; justify-content: center;">
+                              <h2 style="color: #fabf66;">Visualizing Dynamic Projectile Trajectories Using Meshes and Variable Scaling </h2>
+                              <p>Using a parbolic function calculate the path that the projectile should take when travelling towards the target point. Also added a UFloatCurve as a size determination on the trajectory line.</p>
+                            </div>
+                          </div> 
+
+                          <div class="box">
+                            <h3 class="oswald-font">Visualizing Dynamic Projectile Trajectories Using Meshes and Variable Scaling | Code</h3>
+                            <h3 class="click-this">Click Here</h3>
+                            <div class="hidden-text">
+                              <div class="code-snippet">
+                                  <pre><code id="codeBlock">
 <h2 style="color: gray;">//Update the trajectory materials</h2>
 void UPlayerThrowComponent::UpdateTrajectoryMaterials()
 {
@@ -320,66 +442,6 @@ void UPlayerThrowComponent::ClearTrajectoryMeshes()
     }
     TrajectoryMeshes.Empty();
 }
-
-<h2 style="color: gray;">//Spawn the projectile and set the trajectory points.</h2>
-void UPlayerThrowComponent::SpawnAndFollowProjectile(const TArray<FVector>& _TrajectoryPoints)
-{
-    if (ProjectileClass == nullptr && GEngine)
-    {
-        GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Red, TEXT("Missing projectile to spawn"));
-        return;
-    }
-    if (GetWorld())
-    {
-        AAProjectile* AProjectile = GetWorld()->SpawnActor<AAProjectile>(ProjectileClass, TrajectoryPoints[1], FRotator::ZeroRotator);
-        AProjectile->SetTrajectoryPoints(_TrajectoryPoints);
-
-        if (UnitToSpawn != nullptr) 
-        {
-            AProjectile->ToSpawnClass = UnitToSpawn;
-        }
-        else if(GEngine)
-        {
-	    GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Red, TEXT("Missing troop to spawn in the ThrowComponent"));
-        }  
-    }
-}
-
-                                  </code></pre>
-                                </div>
-                              </div>
-                            </div>
-
-                            <div class="box">
-                              <h3 class="oswald-font">Move Projectile | Code</h3>
-                              <h3 class="click-this">Click Here</h3>
-                              <div class="hidden-text">
-                                <div class="code-snippet">
-                                    <pre><code id="codeBlock">
-                                  </code></pre>
-                                </div>
-                              </div>
-                            </div>
-
-                          <!--- Mid Showreel-->
-                          <div style="display: flex; align-items: center;">
-                            <figure style="text-align: center; margin: 0%;">
-                              <img style="height: 30%; width: 80%; margin: 5%; margin-bottom: 0%;" src="gifs/ShowcaseCurve.gif">
-                              <h3 style="color: #fabf66; margin-bottom: 5%;">Placeholder</h3>
-                            </figure>
-                            
-                            <div style="margin-left: 10px; display: flex; flex-direction: column; justify-content: center;">
-                              <h2 style="color: #fabf66;">Visualizing Dynamic Projectile Trajectories Using Meshes and Variable Scaling </h2>
-                              <p>Using a parbolic function calculate the path that the projectile should take when travelling towards the target point. Also added a UFloatCurve as a size determination on the trajectory line.</p>
-                            </div>
-                          </div> 
-
-                          <div class="box">
-                            <h3 class="oswald-font">Visualizing Dynamic Projectile Trajectories Using Meshes and Variable Scaling | Code</h3>
-                            <h3 class="click-this">Click Here</h3>
-                            <div class="hidden-text">
-                              <div class="code-snippet">
-                                  <pre><code id="codeBlock">
                                 </code></pre>
                               </div>
                             </div>
@@ -389,7 +451,7 @@ void UPlayerThrowComponent::SpawnAndFollowProjectile(const TArray<FVector>& _Tra
                             <div class="my-line"></div>
 
                             <div style="display: flex; align-items: center;">
-                              <img style="height: 30%; width: 30%; margin: 5%;" src="images/GP3/KeyToDoorShowcase.gif">
+                              <img style="height: 30%; width: 30%; margin: 5%;" src="gifs/ShowcaseKeyAnimation.gif">
                               <div style="margin-left: 10px; display: flex; flex-direction: column; justify-content: center;">
                                 <h2 style="color: #fabf66;">Key that opens doors -> Tldr</h2>
                                 <p>The key idles, when the player approaches and gets within the set radius, it switches states and starts following the player. When the key gets within the target range from a door it will open the door and pla.</p>
@@ -403,6 +465,7 @@ void UPlayerThrowComponent::SpawnAndFollowProjectile(const TArray<FVector>& _Tra
                               <div class="hidden-text">
                                 <div class="code-snippet">
                                   <pre><code id="codeBlock">
+<h2 style="color: gray;">//Retrieves all the doors in the scene.</h2>
 void AAKey::BeginPlay()
 {
 	Super::BeginPlay();
@@ -426,6 +489,7 @@ void AAKey::BeginPlay()
 		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("No Door Found In Scene"));
 }
 
+<h2 style="color: gray;">//Simple state machine.</h2>
 void AAKey::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
@@ -452,6 +516,7 @@ void AAKey::Tick(float DeltaTime)
 	}
 }
 
+<h2 style="color: gray;">//Starts following player.</h2>
 void AAKey::PickUp()
 {
 	FVector PlayerLocation = GetWorld()->GetFirstPlayerController()->GetPawn()->GetActorLocation();
@@ -465,6 +530,7 @@ void AAKey::PickUp()
 	}
 }
 
+<h2 style="color: gray;">//Starts following the player until the Key is close to a door.</h2>
 void AAKey::FollowPlayer()
 {
 	FVector KeyLocation = GetActorLocation();
@@ -487,6 +553,7 @@ void AAKey::FollowPlayer()
 	}
 }
 
+<h2 style="color: gray;">//Opens the gate and plays the animations.</h2>
 void AAKey::OpenDoor()
 {
 	if (DoorToOpen == nullptr)
@@ -514,6 +581,7 @@ void AAKey::OpenDoor()
 	}
 }
 
+<h2 style="color: gray;">//A function to move and rotate objects used in all of the behaviours.</h2>
 void AAKey::MoveAndRotateTowards(FVector CurrentLocation, FVector TargetLocation, float NewSpeed, float NewMinDistance)
 {
 	float DeltaTime = GetWorld()->GetDeltaSeconds();
@@ -536,10 +604,35 @@ void AAKey::MoveAndRotateTowards(FVector CurrentLocation, FVector TargetLocation
                               </div>
 
                           <div class="my-line"></div>
+                          
+                          <!-- Boss
+                          <div style="display: flex; align-items: center;">
+                            <figure style="text-align: center; margin: 0%;">
+                              <img style="height: 30%; width: 80%; margin: 5%; margin-bottom: 0%;" src="gifs/ShowcaseCurve.gif">
+                              <h3 style="color: #fabf66; margin-bottom: 5%;">Placeholder</h3>
+                            </figure>
+                            
+                            <div style="margin-left: 10px; display: flex; flex-direction: column; justify-content: center;">
+                              <h2 style="color: #fabf66;">Boss behaviours -> Tldr</h2>
+                              <p></p>
+                            </div>
+                          </div> 
+
+                          <div class="box">
+                            <h3 class="oswald-font">Boss code | Code</h3>
+                            <h3 class="click-this">Click Here</h3>
+                            <div class="hidden-text">
+                              <div class="code-snippet">
+                                <pre><code id="codeBlock">
+                                </code></pre>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="my-line"></div> -->
 
                         <h2 class="oswald-font"; style="text-align:center">Thank you for reading.</h2>
                     </div>  
-                    
             </div>
         </div>
         <script src="script.js"></script>
