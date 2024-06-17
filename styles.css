@@ -232,7 +232,7 @@ img {
 
 .screen-container .overlay-image-socials{
     position: fixed;
-    top: 85%;
+    top: 90%;
     left: 90%;
     width: 100px;
     height: auto;
@@ -300,28 +300,56 @@ img {
 /*Takes care of card size based on screen size*/
 
 @media (max-width: 768px) {
-
-    .card
-    {
+    .card {
         width: 100%;
+        height: 60%;
     }
 
-    .overlay-image-engine
-    {
+    .overlay-image-engine {
         width: 50px;
+    }
+
+    .maincard .portrait {
+        width: 50%;
+        left: 50%;
+        top: 30%;
+    }
+
+    .overlay-text-visible{
+        top: 70%;
+        font-size: 15px;
+        width: 60%;
+    }
+
+    .card-container {
+        margin-top: 3%;
+    }
+
+    .maincard-container{
+        height: 90vh;
+    }
+    .card .overlay-image-available{
+        left: 20%;
+        top: 90%;
+    }
+
+    .card .overlay-image-engine {
+        left: 80%;
+        top: 90%;
+    }
+
+    .card .overlay-text {
+        width: 95%;
+        top: 45%;
+        transform: translate(-50%, -50%);
     }
 }
 
 @media (min-width: 769px) and (max-width: 1024px) {
-    
-    .card
-    {
-        width: 39%;
-    }
 }
 
 @media (min-width: 1025px) {
 
-
 }
 /*ends here */
+
