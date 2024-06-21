@@ -43,3 +43,15 @@ window.addEventListener('scroll', function() {
 
   lastScrollTop = scrollTop;
 });
+
+document.querySelectorAll('.project').forEach(project => {
+  project.addEventListener('mouseenter', (e) => {
+      const project = e.target;
+      // Optional: Add more detailed information or animations here
+  });
+
+  project.addEventListener('mouseleave', (e) => {
+      const project = e.target;
+      // Optional: Remove additional information or reset animations here
+  });
+});

@@ -1,23 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="icon" href="vec/icon.svg" type="image/svg+xml">
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="styles.css">
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-
     <title>Robin Zeitlin</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <style>
-
         body {
             font: normal 10px "Seymour One", "Seymour One", sans-serif;
         }
-
+        
         /* Scrollbar styling for WebKit browsers */
         ::-webkit-scrollbar {
           width: 12px; /* Width of the scrollbar */
@@ -45,140 +38,137 @@
         html:hover {
           scrollbar-color: #f1f1f1 #555;
         }
-      </style>
-      
+    </style>
 </head>
 <body>
-<div>
+    <div>
 
-  <div class="corner-container">
-    <a class="hover-text" style="color: #6093ff"; href="https://www.linkedin.com/in/robin-zeitlin-778a9127a/">Robin Zeitlin | LinkedIn</a>
-    <p></p>
-    <a class="hover-text" style="color: #6093ff"; href="https://github.com/RobinZeitlin?tab=repositories">Robin Zeitlin | Github</a>
-    <p></p>
-    <a class="hover-text" style="color: #6093ff"; href="mailto:robin.zeitlin@hotmail.com">robin.zeitlin@hotmail.com</a>
-  </div>
-  
-  
-    <div class="maincard-container" class="hidden">
-        <div class="maincard">
+        <div class="corner-container">
+            <a class="hover-text" style="color: #6093ff;" href="https://www.linkedin.com/in/robin-zeitlin-778a9127a/">Robin Zeitlin | LinkedIn</a>
+            <p></p>
+            <a class="hover-text" style="color: #6093ff;" href="https://github.com/RobinZeitlin?tab=repositories">Robin Zeitlin | Github</a>
+            <p></p>
+            <a class="hover-text" style="color: #6093ff;" href="mailto:robin.zeitlin@hotmail.com">robin.zeitlin@hotmail.com</a>
+        </div>
         
-            <img src="images/overlay.png">
-            <img class="portrait" src="images/portrait.jpg" alt="Overlay Image 1">
-            <img class="moving-image-maincard" src="images/overlay.png">
-            <div class="overlay-text-visible" opacity>
-                <h1 style="color: #ffffff; "> Robin Zeitlin</h1>
-                <p style="color: #ffffff; "> Game Programmer currently studying at FutureGames. Seeking oppurtunities to contribute to game projects, learn new things and gain valueable experience. </p>
-                <div class="container">
-                  <div class="box">C#</div>
-                  <div class="box">C++</div>
-                  <div class="box">Unity</div>
-                  <div class="box">Unreal-Engine</div>
-                  <div class="box">Pun 2</div>
-                  <div class="box">Html</div>
-                  <div class="box">Css</div>
+        <div class="maincard-container">
+            <div class="maincard">
+                <img class="portrait" src="images/portrait.jpg" alt="Overlay Image 1">
+                <div class="overlay-text-visible" opacity>
+                    <h1 style="color: #ffffff;"> Robin Zeitlin</h1>
+                    <p style="color: #ffffff;"> Gameplay Programmer currently studying at FutureGames. Seeking opportunities to contribute to game projects, learn new things, and gain valuable experience. </p>
+                    <div class="container">
+                        <div class="box">C#</div>
+                        <div class="box">C++</div>
+                        <div class="box">Unity</div>
+                        <div class="box">UE5</div>
+                        <div class="box">Pun2</div>
+                        <div class="box">Html</div>
+                        <div class="box">Css</div>
+                    </div>
+                    <br>
+                    <a class="hover-text" style="color: #6093ff; font-size: 80%;" onclick="redirectTo('aboutme.html');">-> about me <-</a>
                 </div>
-                <br>
-                <a class="hover-text" style="color: #6093ff; font-size: 80%;" onclick="redirectTo('aboutme.html');">-> about me <-</a>
-              </div>
-        </div>
+            </div>
         </div>
     </div>
 
-    <div style="width: 100%; height: 100%; transform: translate(0, -30%); overflow: visible;">
-      <svg x="50" y="200vh" width="100%" height="100%" id="svg" viewBox="0 0 1440 390" xmlns="http://www.w3.org/2000/svg" class="transition duration-300 ease-in-out delay-150">
-        <path style="fill: #424242" d="M 0,400 L 0,150 C 56.58118556701031,196.92783505154637 113.16237113402062,243.85567010309276 165,223 C 216.83762886597938,202.14432989690724 263.9317010309278,113.50515463917526 331,82 C 398.0682989690722,50.49484536082474 485.11082474226805,76.12371134020619 550,83 C 614.889175257732,89.87628865979381 657.625,78 717,85 C 776.375,92 852.3891752577321,117.87628865979383 907,125 C 961.6108247422679,132.12371134020617 994.8182989690722,120.49484536082471 1055,122 C 1115.1817010309278,123.50515463917529 1202.3376288659795,138.14432989690724 1271,145 C 1339.6623711340205,151.85567010309276 1389.8311855670104,150.92783505154637 1440,150 L 1440,400 L 0,400 Z" stroke="none" stroke-width="0" fill="#758280" class="transition-all duration-300 ease-in-out delay-150 path-0" transform="rotate(-180 720 200)"></path>
-      </svg>
-    </div>
-</div>
+    <div class="card-container">
+        <div class="card" onclick="redirectTo('GP3.html')">
+            <div class="card-title">FruityWars (WIP)</div>
+            <div class="card-content">
+                <img src="gifs/ShowcaseSizeDifference.gif">
+                <img class="overlay-image-engine" src="images/GP3/UEIcon.jpg" alt="Overlay Image 1">
+                <img class="overlay-image-available" src="images/GP3/C++Logo.png" alt="Overlay Image 1">
+                <div class="overlay-text">
+                    <h2>10 👥</h2>
+                    <h2 style="padding-left:10px; padding-right:10px;"> Made during my third game project at FutureGames</h2>
+                    <h3 style="text-align:left; padding-left:10px;"> I Programmed :</h3>
+                    <p style="text-align:left; padding-left:10px;">• Parabolic curve based throwing | • Mario like key and door system</p>
+                </div>
+            </div>
+        </div>
 
+        <div class="card" onclick="redirectTo('honker.html')">
+            <div class="card-title">Honker</div>
+            <div class="card-content">
+                <img src="images/Honker/CollisionShowcase.gif">
+                <img class="overlay-image-engine" src="images/unity.png" alt="Overlay Image 1">
+                <img class="overlay-image-available" src="images/steamicon.png" alt="Overlay Image 1">
+                <div class="overlay-text">
+                    <h2>Solo 👥</h2>
+                    <h2>Released : 2024-05-15</h2>
+                    <p style="padding-left:10px; padding-right:10px;"> Third steam release, made in 1 month with the goal of learning Unity's Entity System.</p>
+                    <h3 style="text-align:left; padding-left:10px;"> I Programmed :</h3>
+                    <p style="text-align:left; padding-left:10px;">• Entity Component System (ECS) | • Editor tool image saver</p>
+                </div>
+            </div>
+        </div>
 
+        <div class="card" onclick="redirectTo('caviar.html')">
+            <div class="card-title">Caviar</div>
+            <div class="card-content">
+                <img src="images/Caviar.png">
+                <img class="overlay-image-engine" src="images/unity.png" alt="Overlay Image 1">
+                <img class="overlay-image-available" src="images/steamicon.png" alt="Overlay Image 1">
+                <div class="overlay-text">
+                    <h2>Solo 👥</h2>
+                    <h2>Fully released : 2024-04-15</h2>
+                    <p style="padding-left:10px; padding-right:10px;"> Second steam release, made in 1 month with the goal of learning behaviour trees.</p>
+                    <h3 style="text-align:left; padding-left:10px;"> I Programmed :</h3>
+                    <p style="text-align:left; padding-left:10px;">• Steam Integration | • AI logic | • Camera Mechanic</p>
+                </div>
+            </div>
+        </div>
 
+        <div class="card" onclick="redirectTo('rainrunner.html')">
+            <div class="card-title">Rain Runner</div>
+            <div class="card-content">
+                <img src="images/RainRunner.png">
+                <img class="overlay-image-engine" src="images/unity.png" alt="Overlay Image 1">
+                <img class="overlay-image-available" src="images/steamicon.png" alt="Overlay Image 1">
+                <div class="overlay-text">
+                    <h2>Collaboration 👥</h2>
+                    <h2>Released : 2024-02-29</h2>
+                    <h3 style="text-align:left; padding-left:10px;"> I Programmed :</h3>
+                    <p style="text-align:left; padding-left:10px;">• Steam Leaderboard</p>
+                </div>
+            </div>
+        </div>
+      </div>
 
-<div class="card-container">
+  <div class="bottom-container">
+    <div class="timeline">
+      <div class="project" data-year="2020">
+          <img src="images/Caviar.png" alt="Project 1">
+          <div class="text-area">
+              <h3>2024</h3>
+          </div>
+      </div>
 
-  <!-- <div class="card 1" onclick="redirectTo('revload.html')">
-    <img src="images/Revload/RevloadVerticalCapsule.jpg">
-    <img class="overlay-image-engine" src="images/unity.png" alt="Overlay Image 1">
-    <img class="overlay-image-available" src="images/steamicon.png" alt="Overlay Image 1">
-    <div class="overlay-text">
-        <h1>Revload</h1> 
-         <h2>Solo 👥</h2>
-         <h2>Will be released : 2024-06-15</h2>
-         <p style="padding-left:10px; padding-right:10px;"> Fourth steam release, made in 1 month with the goal of learning Unitys Entity System.</p>
-         <h3 style="text-align:left; padding-left:10px;" > I Programmed : </h3>
-         <p style="text-align:left; padding-left:10px;"> • The whole game</p>
-    </div>
-  </div> -->
+      <div class="project" data-year="2020">
+          <img src="images/RainRunner.png" alt="Project 1">
+          <div class="text-area">
+              <h3>2024</h3>
+          </div>
+      </div>
 
-  <div class="card 1" onclick="redirectTo('GP3.html')">
-    <img src="images/GP3/placeholderGP3.png">
-    <img class="overlay-image-engine" src="images/GP3/UEIcon.jpg" alt="Overlay Image 1">
-    <img class="overlay-image-available" src="images/GP3/C++Logo.png" alt="Overlay Image 1">
-    <div class="overlay-text">
-        <h1>FruityWars (WIP)</h1> 
-         <h2>10 👥</h2>
-         <h2 style="padding-left:10px; padding-right:10px;"> Made during my third game project at futuregames</h2>
-         <h3 style="text-align:left; padding-left:10px;" > I Programmed : </h3>
-         <p style="text-align:left; padding-left:10px;"> • Parabolic curve based throwing | • Mario like key and door system</p>
-    </div>
+      <div class="project" data-year="2021">
+          <img src="images/Honker/CollisionShowcase.gif" alt="Project 2">
+          <div class="text-area">
+              <h3>2024</h3>
+          </div>
+      </div>
+
+      <div class="project" data-year="2022">
+          <img src="gifs/ShowcaseSizeDifference.gif" alt="Project 3">
+          <div class="text-area">
+              <h3>2024</h3>
+          </div>
+      </div>
+  </div>
   </div>
 
-  <div class="card 1" onclick="redirectTo('honker.html')">
-    <img src="images/Honker/honkershowcase.png">
-    <img class="overlay-image-engine" src="images/unity.png" alt="Overlay Image 1">
-    <img class="overlay-image-available" src="images/steamicon.png" alt="Overlay Image 1">
-    <div class="overlay-text">
-        <h1>Honker</h1> 
-         <h2>Solo 👥</h2>
-         <h2>Will be released : 2024-05-15</h2>
-         <p style="padding-left:10px; padding-right:10px;"> Third steam release, made in 1 month with the goal of learning Unitys Entity System.</p>
-         <h3 style="text-align:left; padding-left:10px;" > I Programmed : </h3>
-         <p style="text-align:left; padding-left:10px;"> • Entity Component System (ECS) | • Editor tool image saver</p>
-    </div>
-  </div>
-
-  <div class="card 1" onclick="redirectTo('caviar.html')">
-    <img src="images/Caviar.png">
-    <img class="overlay-image-engine" src="images/unity.png" alt="Overlay Image 1">
-    <img class="overlay-image-available" src="images/steamicon.png" alt="Overlay Image 1">
-    <div class="overlay-text">
-        <h1>Caviar</h1> 
-         <h2>Solo 👥</h2>
-         <h2>Fully released : 2024-04-15</h2>
-         <p style="padding-left:10px; padding-right:10px;"> Secound steam release, made in 1 month with the goal of learning behaviour trees.</p>
-         <h3 style="text-align:left; padding-left:10px;" > I Programmed : </h3>
-         <p style="text-align:left; padding-left:10px;"> • Steam Integration | • AI logic | • Camera Mechanic</p>
-   </div>
-</div>
-
-<div class="card 3" onclick="redirectTo('rainrunner.html')">
-  <img src="images/RainRunner.png">
-  <img class="overlay-image-engine" src="images/unity.png" alt="Overlay Image 1">
-  <img class="overlay-image-available" src="images/steamicon.png" alt="Overlay Image 1">
-  <div class="overlay-text">
-      <h1>Rain Runner</h1> 
-       <h2>Collaboration 👥</h2>
-       <h2>Released : 2024-02-29</h2>
-       <h3 style="text-align:left; padding-left:10px;" > I Programmed : </h3>
-       <p style="text-align:left; padding-left:10px;"> • Steam Leaderboard</p>
-  </div>
-</div>
-
-    <div class="card 5">
-        <img src="images/pitchBlack.png">
-        
-        <div class="overlay-text">
-            <h1> Coming Soon....</h1> 
-
-             <p> Congrats you reached the end of internet🎉 </p>
-       </div>
-    </div>
-</div>
-
-
-
-<script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
-
