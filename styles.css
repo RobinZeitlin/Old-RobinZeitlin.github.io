@@ -8,7 +8,7 @@ body {
 
 .bottom-container {
     width: 100%;
-    height: 100vh;
+    height: 40vh;
 }
 /*Container*/
 .card-container {
@@ -195,13 +195,12 @@ img {
 
 .corner-container {
     position: fixed;
-    bottom: 0;
+    top: 0;
     right: 0;
-    background-color: #f9f9f91c;
     border-radius: 2vh;
-    padding: 10px;
+    padding: 60px;
     font-size: medium;
-    z-index: 10;
+    z-index: 1000;
   }
   
   .hover-text {
@@ -367,6 +366,7 @@ img {
 .card:hover {
     z-index: 2;
     transform: scale(1.05);
+    cursor: pointer;
 }
 
 /*Card hover ends here*/
@@ -381,7 +381,7 @@ img {
 
     .bottom-container {
         width: 100%;
-        height: 50vh;
+        height: 25vh;
     }
 
     .maincard .portrait {
@@ -414,6 +414,11 @@ img {
         width: 45px;
         top: 15%;
     }
+
+    .corner-container {
+        top: 70%;
+        padding: 60px;
+      }
 
 }
 
