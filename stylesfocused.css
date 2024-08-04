@@ -259,18 +259,18 @@ body {
 }
 
 .intro .rounded-image {
-  width: 350;
+  width: 350px;
   height: 350px;
   overflow: hidden;
   border-radius: 50%;
   margin-right: 20px;
-  outline: 3px dashed #be9351;
 }
 
 .information-image img {
   max-width: 100%;
   height: auto;
   outline: 3px dashed #ffffff;
+  margin: 15%;
 }
 
 .intro img {
@@ -307,6 +307,7 @@ body {
 
 /*Takes care of card size based on screen size*/
 @media (max-width: 768px) {
+
     .title-text{
     font-size: x-large;
     left: 50%;
@@ -352,6 +353,14 @@ body {
     }
     .content p {
       line-height: 1.6;
+    }
+
+    .rounded-image{
+      width: 350px;
+      height: 350px;
+      overflow: hidden;
+      border-radius: 50%;
+      margin-right: 20px;
     }
 }
 
